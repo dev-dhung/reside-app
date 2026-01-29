@@ -1232,30 +1232,38 @@ class CreditosScreen extends StatelessWidget {
     {
       "nombre": "Gabriel Sanabria",
       "rol": "Investigador UX",
-      "imagen": "https://i.ibb.co/6P0r5Qx/avatar-4.png",
-      "qr_imagen": "https://i.ibb.co/C0wR4d2/qr-placeholder.png",
+      "imagen": "assets/images/gabo.jpeg",
+      "qr_imagen": "assets/images/qr_gabo.jpeg",
     },
   ];
 
-  // Datos del tutor
   final Map<String, String> tutor = {
     "nombre": "Walter Carrasquero",
     "rol": "Tutor Académico",
-    "imagen": "https://i.ibb.co/y4L2k8J/professor.png", // Imagen para el tutor
+    "titulo": "Ing. de Sistemas",
+    "telf": "0424-1938899",
+    "imagen": "assets/images/unexca.jpg",
   };
+
+  // --- FUNCIÓN CLAVE PARA CARGAR IMÁGENES DINÁMICAMENTE ---
+  ImageProvider _configurarImagen(String ruta) {
+    if (ruta.startsWith('http')) {
+      return NetworkImage(ruta);
+    } else {
+      return AssetImage(ruta);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Equipo de Desarrollo",
           style: TextStyle(color: Colors.white),
-        ), // Título blanco
-        backgroundColor: Color(0xFF1A237E),
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ), // Icono de retroceso blanco
+        ),
+        backgroundColor: const Color(0xFF1A237E),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       body: Column(
         children: [
@@ -1265,8 +1273,7 @@ class CreditosScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Sección de Integrantes
-                  Text(
+                  const Text(
                     "Integrantes del Equipo",
                     style: TextStyle(
                       fontSize: 20,
@@ -1274,30 +1281,24 @@ class CreditosScreen extends StatelessWidget {
                       color: Colors.black87,
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   GridView.builder(
                     shrinkWrap: true,
-                    physics:
-                        NeverScrollableScrollPhysics(), // Deshabilita el scroll del GridView
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, // 2 columnas
-                      crossAxisSpacing: 10,
-                      mainAxisSpacing: 10,
-                      childAspectRatio:
-                          0.75, // Ajusta la altura de los ítems para que quepa todo
-                    ),
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 10,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 0.75,
+                        ),
                     itemCount: integrantes.length,
                     itemBuilder: (context, index) {
-                      return _buildIntegranteCard(
-                        context,
-                        integrantes[index],
-                      ); // Pasamos el context
+                      return _buildIntegranteCard(context, integrantes[index]);
                     },
                   ),
-                  SizedBox(height: 30),
-
-                  // Sección del Tutor (al final, como lo pediste)
-                  Text(
+                  const SizedBox(height: 30),
+                  const Text(
                     "Tutor Académico",
                     style: TextStyle(
                       fontSize: 20,
@@ -1305,7 +1306,7 @@ class CreditosScreen extends StatelessWidget {
                       color: Colors.black87,
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Card(
                     elevation: 4,
                     shape: RoundedRectangleBorder(
@@ -1317,17 +1318,19 @@ class CreditosScreen extends StatelessWidget {
                         children: [
                           CircleAvatar(
                             radius: 40,
-                            backgroundImage: NetworkImage(tutor["imagen"]!),
+                            backgroundImage: _configurarImagen(
+                              tutor["imagen"]!,
+                            ),
                             backgroundColor: Colors.grey[200],
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   tutor["nombre"]!,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black87,
@@ -1340,6 +1343,20 @@ class CreditosScreen extends StatelessWidget {
                                     color: Colors.grey[700],
                                   ),
                                 ),
+                                Text(
+                                  tutor["titulo"]!,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.grey[700],
+                                  ),
+                                ),
+                                Text(
+                                  tutor["telf"]!,
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.grey[700],
+                                  ),
+                                ),
                               ],
                             ),
                           ),
@@ -1347,15 +1364,14 @@ class CreditosScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(height: 30), // Espacio extra antes del pie de página
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
           ),
-          // Pie de página
           Container(
             width: double.infinity,
-            padding: EdgeInsets.all(15),
+            padding: const EdgeInsets.all(15),
             color: Colors.grey[100],
             child: Center(
               child: Text(
@@ -1369,14 +1385,12 @@ class CreditosScreen extends StatelessWidget {
     );
   }
 
-  // Widget para construir cada tarjeta de integrante y manejar el modal QR
   Widget _buildIntegranteCard(
     BuildContext context,
     Map<String, String> integrante,
   ) {
     return GestureDetector(
       onTap: () {
-        // Mostrar el modal con la imagen del QR
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -1388,17 +1402,16 @@ class CreditosScreen extends StatelessWidget {
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Image.network(
-                    integrante["qr_imagen"]!, // URL de la imagen QR
+                  // Ajuste para el QR
+                  Image(
+                    image: _configurarImagen(integrante["qr_imagen"]!),
                     width: 200,
                     height: 200,
-                    errorBuilder: (context, error, stackTrace) => Icon(
-                      Icons.broken_image,
-                      size: 200,
-                    ), // Si falla la carga
+                    errorBuilder: (context, error, stackTrace) =>
+                        const Icon(Icons.broken_image, size: 200),
                   ),
-                  SizedBox(height: 10),
-                  Text(
+                  const SizedBox(height: 10),
+                  const Text(
                     "Escanea para ver su perfil",
                     style: TextStyle(color: Colors.grey),
                   ),
@@ -1407,7 +1420,7 @@ class CreditosScreen extends StatelessWidget {
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text("Cerrar"),
+                  child: const Text("Cerrar"),
                 ),
               ],
             );
@@ -1420,19 +1433,19 @@ class CreditosScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             CircleAvatar(
               radius: 40,
-              backgroundImage: NetworkImage(integrante["imagen"]!),
+              backgroundImage: _configurarImagen(integrante["imagen"]!),
               backgroundColor: Colors.grey[200],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: Text(
                 integrante["nombre"]!,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 15,
                   color: Colors.black87,
@@ -1447,7 +1460,7 @@ class CreditosScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 13, color: Colors.grey[700]),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
           ],
         ),
       ),

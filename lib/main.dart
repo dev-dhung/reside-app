@@ -1212,26 +1212,26 @@ class CreditosScreen extends StatelessWidget {
   // Lista de integrantes del equipo
   final List<Map<String, String>> integrantes = [
     {
-      "nombre": "Nombre Integrante 1",
-      "rol": "Líder de Proyecto",
+      "nombre": "Wendy Díaz",
+      "rol": "Redactor técnico",
       "imagen": "https://i.ibb.co/L5gqX1r/avatar-1.png",
       "qr_imagen": "https://i.ibb.co/C0wR4d2/qr-placeholder.png",
     },
     {
-      "nombre": "Nombre Integrante 2",
-      "rol": "Desarrollador Backend",
+      "nombre": "Diego Hung",
+      "rol": "Desarrollador Full stack",
       "imagen": "https://i.ibb.co/S68v4G7/avatar-2.png",
       "qr_imagen": "https://i.ibb.co/C0wR4d2/qr-placeholder.png",
     },
     {
-      "nombre": "Nombre Integrante 3",
-      "rol": "Diseño UI/UX",
+      "nombre": "Yonahiderly Rosales",
+      "rol": "Diseñador UI/UX",
       "imagen": "https://i.ibb.co/P4w8h5p/avatar-3.png",
       "qr_imagen": "https://i.ibb.co/C0wR4d2/qr-placeholder.png",
     },
     {
-      "nombre": "Nombre Integrante 4",
-      "rol": "Documentación",
+      "nombre": "Gabriel Sanabria",
+      "rol": "Investigador UX",
       "imagen": "https://i.ibb.co/6P0r5Qx/avatar-4.png",
       "qr_imagen": "https://i.ibb.co/C0wR4d2/qr-placeholder.png",
     },
@@ -1239,7 +1239,7 @@ class CreditosScreen extends StatelessWidget {
 
   // Datos del tutor
   final Map<String, String> tutor = {
-    "nombre": "Prof. [Nombre del Tutor]",
+    "nombre": "Walter Carrasquero",
     "rol": "Tutor Académico",
     "imagen": "https://i.ibb.co/y4L2k8J/professor.png", // Imagen para el tutor
   };

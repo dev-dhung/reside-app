@@ -129,12 +129,20 @@ class LoginScreen extends StatelessWidget {
 }
 
 // --- PANTALLA PRINCIPAL (DASHBOARD) ---
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  // Variable de estado para alternar vistas
+  bool _esAdmin = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("SIGRA - Mi tablero"),
+        title: Text(_esAdmin ? "SIGRA - Gestión Admin" : "SIGRA - Mi tablero"),
         backgroundColor: Color(0xFF1A237E),
         actions: [
           Stack(
@@ -143,7 +151,6 @@ class HomeScreen extends StatelessWidget {
               IconButton(
                 icon: Icon(Icons.notifications_none, size: 28),
                 onPressed: () {
-                  // Mostrar un Snackbar simple como simulación
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
@@ -184,10 +191,15 @@ class HomeScreen extends StatelessWidget {
       body: ListView(
         padding: EdgeInsets.all(16),
         children: [
-          _buildStatusCard(),
+          _buildRoleSelector(), // El switch para tu presentación
+          SizedBox(height: 20),
+          // Cambia la tarjeta principal según el rol
+          _esAdmin ? _buildAdminDashboard() : _buildStatusCard(),
           SizedBox(height: 20),
           Text(
-            "Servicios y Gestión",
+            _esAdmin
+                ? "Panel de Control Administrativo"
+                : "Servicios y Gestión",
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 10),
@@ -203,6 +215,29 @@ class HomeScreen extends StatelessWidget {
         },
         child: Icon(Icons.smart_toy, color: Colors.white),
         backgroundColor: Color(0xFFFFA000),
+      ),
+    );
+  }
+
+  // --- WIDGETS AUXILIARES ---
+
+  Widget _buildRoleSelector() {
+    return Center(
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 8),
+        child: ToggleButtons(
+          isSelected: [!_esAdmin, _esAdmin],
+          onPressed: (index) {
+            setState(() {
+              _esAdmin = index == 1;
+            });
+          },
+          borderRadius: BorderRadius.circular(10),
+          selectedColor: Colors.white,
+          fillColor: _esAdmin ? Color(0xFFFFA000) : Color(0xFF1A237E),
+          constraints: BoxConstraints(minHeight: 40, minWidth: 100),
+          children: [Text("Modo Vecino"), Text("Modo Admin")],
+        ),
       ),
     );
   }
@@ -242,6 +277,44 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildAdminDashboard() {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+      child: Container(
+        padding: EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFFFFA000), Color(0xFFFF6F00)],
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Recaudación Total Mensual",
+              style: TextStyle(color: Colors.white),
+            ),
+            SizedBox(height: 10),
+            Text(
+              "\$12,450.80",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Text(
+              "Caja de Residencia La Molienda",
+              style: TextStyle(color: Colors.white60),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildMenuGrid(BuildContext context) {
     return GridView.count(
       shrinkWrap: true,
@@ -250,48 +323,55 @@ class HomeScreen extends StatelessWidget {
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
       children: [
-        // Aquí está el botón de Pagar que ahora sí funcionará:
-        GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PaymentScreen()),
-          ),
-          child: _menuItem(Icons.payment, "Pagar"),
+        _buildGestureItem(context, Icons.payment, "Pagar", PaymentScreen()),
+        _buildGestureItem(
+          context,
+          Icons.event_available,
+          "Reservas",
+          ReservasScreen(),
         ),
-        GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => ReservasScreen()),
-          ),
-          child: _menuItem(Icons.event_available, "Reservas"),
+        _buildGestureItem(
+          context,
+          Icons.campaign,
+          "Anuncios",
+          AnunciosScreen(),
         ),
-        GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => AnunciosScreen()),
-          ),
-          child: _menuItem(Icons.campaign, "Anuncios"),
+        _buildGestureItem(
+          context,
+          Icons.description,
+          "Normativa",
+          NormativaScreen(),
         ),
-        GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => NormativaScreen()),
-          ),
-          child: _menuItem(Icons.description, "Normativa"),
+        _buildGestureItem(
+          context,
+          Icons.analytics,
+          "Reportes",
+          ReportesScreen(soyAdmin: _esAdmin), // Pasamos el rol
         ),
       ],
     );
   }
 
-  Widget _menuItem(IconData icon, String label) {
-    return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, size: 40, color: Color(0xFF1A237E)),
-          SizedBox(height: 10),
-          Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
-        ],
+  Widget _buildGestureItem(
+    BuildContext context,
+    IconData icon,
+    String label,
+    Widget screen,
+  ) {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => screen),
+      ),
+      child: Card(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 40, color: Color(0xFF1A237E)),
+            SizedBox(height: 10),
+            Text(label, style: TextStyle(fontWeight: FontWeight.bold)),
+          ],
+        ),
       ),
     );
   }
@@ -1221,7 +1301,7 @@ class CreditosScreen extends StatelessWidget {
       "nombre": "Diego Hung",
       "rol": "Desarrollador Full stack",
       "imagen": "https://i.ibb.co/S68v4G7/avatar-2.png",
-      "qr_imagen": "https://i.ibb.co/C0wR4d2/qr-placeholder.png",
+      "qr_imagen": "assets/images/qr_dhung.png",
     },
     {
       "nombre": "Yonahiderly Rosales",
@@ -1463,6 +1543,286 @@ class CreditosScreen extends StatelessWidget {
             const SizedBox(height: 10),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class ReportesScreen extends StatelessWidget {
+  final bool soyAdmin;
+
+  ReportesScreen({this.soyAdmin = false});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(soyAdmin ? "Panel de Reportes SIGRA" : "Mis Estadísticas"),
+        backgroundColor: Color(0xFF1A237E),
+      ),
+      body: ListView(
+        padding: EdgeInsets.all(16),
+        children: [
+          Text(
+            soyAdmin
+                ? "Resumen de Gestión La Molienda"
+                : "Tu Actividad en el Condominio",
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF1A237E),
+            ),
+          ),
+          SizedBox(height: 20),
+
+          // --- SECCIÓN DE TARJETAS SEGÚN ROL ---
+          if (soyAdmin) ...[
+            _buildStatCard(
+              "Morosidad Global",
+              "12%",
+              "3 unidades pendientes",
+              Colors.red,
+            ),
+            _buildStatCard(
+              "Fondo de Reserva",
+              "\$2,450.00",
+              "+5% este mes",
+              Color(0xFFFFA000),
+            ),
+            _buildStatCard(
+              "Resolución Chatbot",
+              "92%",
+              "Consultas sin operador",
+              Colors.green,
+            ),
+          ] else ...[
+            _buildStatCard(
+              "Tu Consumo de Agua",
+              "Moderado",
+              "2% menos que el mes pasado",
+              Colors.blue,
+            ),
+            _buildStatCard(
+              "Puntualidad de Pago",
+              "Excelente",
+              "12 meses sin retrasos",
+              Colors.green,
+            ),
+          ],
+
+          SizedBox(height: 30),
+
+          // --- SECCIÓN DE GRÁFICOS ---
+          Text(
+            "Temas más consultados al Chatbot",
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 15),
+          _buildChatbotChart(),
+
+          // --- SECCIÓN DE LOGS (SOLO ADMIN) ---
+          if (soyAdmin) ...[
+            SizedBox(height: 30),
+            Text(
+              "Últimos reportes vía Chatbot",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Column(
+                children: [
+                  _buildChatLogItem(
+                    "Apto 4B",
+                    "Consulta sobre deuda",
+                    "Resuelto por IA",
+                  ),
+                  Divider(height: 1),
+                  _buildChatLogItem(
+                    "Apto 2A",
+                    "Fuga de agua en pasillo",
+                    "Escalado a Junta",
+                  ),
+                  Divider(height: 1),
+                  _buildChatLogItem(
+                    "Apto 1C",
+                    "Solicitud de reglamento",
+                    "Resuelto por IA",
+                  ),
+                ],
+              ),
+            ),
+          ],
+
+          SizedBox(height: 30),
+
+          // --- MENSAJES DE VALOR ---
+          if (soyAdmin)
+            _buildInfoTile(
+              Icons.lightbulb_outline,
+              "Sugerencia: El volumen de dudas sobre 'Pagos' indica que el botón de ayuda debe ser más visible.",
+            )
+          else
+            _buildInfoTile(
+              Icons.verified_user,
+              "Gracias por tu solvencia. Esto permite el mantenimiento de las áreas comunes.",
+            ),
+        ],
+      ),
+    );
+  }
+
+  // --- WIDGETS INTERNOS ---
+
+  Widget _buildStatCard(
+    String title,
+    String value,
+    String subtitle,
+    Color accentColor,
+  ) {
+    return Card(
+      elevation: 4,
+      margin: EdgeInsets.only(bottom: 15),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              title,
+              style: TextStyle(color: Colors.grey[600], fontSize: 14),
+            ),
+            SizedBox(height: 8),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  value,
+                  style: TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF1A237E),
+                  ),
+                ),
+                Icon(Icons.trending_up, color: accentColor),
+              ],
+            ),
+            Text(
+              subtitle,
+              style: TextStyle(
+                color: accentColor,
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChatbotChart() {
+    return Container(
+      padding: EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [BoxShadow(color: Colors.black12, blurRadius: 4)],
+      ),
+      child: Column(
+        children: [
+          _barRow("Pagos/Cuentas", 0.85, Color(0xFF1A237E)),
+          _barRow("Servicios (Agua/Luz)", 0.60, Color(0xFF3949AB)),
+          _barRow("Reporte de Averías", 0.45, Color(0xFFFFA000)),
+        ],
+      ),
+    );
+  }
+
+  Widget _barRow(String label, double percent, Color color) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                label,
+                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+              ),
+              Text(
+                "${(percent * 100).toInt()}%",
+                style: TextStyle(fontSize: 12, color: Colors.grey),
+              ),
+            ],
+          ),
+          SizedBox(height: 6),
+          LinearProgressIndicator(
+            value: percent,
+            backgroundColor: Colors.grey[200],
+            color: color,
+            minHeight: 10,
+            borderRadius: BorderRadius.circular(5),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildChatLogItem(String apto, String tema, String estado) {
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundColor: Color(0xFF1A237E),
+        child: Icon(Icons.person, color: Colors.white, size: 20),
+      ),
+      title: Text(
+        "$apto - $tema",
+        style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+      ),
+      trailing: Container(
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        decoration: BoxDecoration(
+          color: estado == "Resuelto por IA"
+              ? Colors.green.withOpacity(0.1)
+              : Colors.orange.withOpacity(0.1),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Text(
+          estado,
+          style: TextStyle(
+            fontSize: 11,
+            color: estado == "Resuelto por IA" ? Colors.green : Colors.orange,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoTile(IconData icon, String text) {
+    return Container(
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: Color(0xFF1A237E).withOpacity(0.05),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: Color(0xFFFFA000)),
+          SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              text,
+              style: TextStyle(fontSize: 13, fontStyle: FontStyle.italic),
+            ),
+          ),
+        ],
       ),
     );
   }

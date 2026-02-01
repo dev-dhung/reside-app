@@ -13,18 +13,15 @@ class SigraApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch().copyWith(
           secondary: Color(0xFFFFA000),
         ),
-        // ESTA ES LA PARTE CLAVE:
         appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xFF1A237E), // Fondo azul marino
-          foregroundColor: Colors.white, // Todo el texto e iconos en blanco
+          backgroundColor: Color(0xFF1A237E),
+          foregroundColor: Colors.white,
           titleTextStyle: TextStyle(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
-          iconTheme: IconThemeData(
-            color: Colors.white,
-          ), // Icono de atrás en blanco
+          iconTheme: IconThemeData(color: Colors.white),
         ),
       ),
       home: LoginScreen(),
@@ -37,11 +34,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Evita que el teclado mueva los elementos de forma extraña
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          // Capa 1: Formulario Centrado
           Center(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(30.0),
@@ -103,7 +98,6 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
 
-          // Capa 2: Pie de página anclado abajo a la izquierda
           Positioned(
             bottom: 20,
             left: 20,
@@ -115,8 +109,8 @@ class LoginScreen extends StatelessWidget {
               child: Text(
                 "Desarrollado por...",
                 style: TextStyle(
-                  color: Colors.blue[800], // Azul de link
-                  fontStyle: FontStyle.italic, // Cursiva
+                  color: Colors.blue[800],
+                  fontStyle: FontStyle.italic,
                   fontSize: 12,
                 ),
               ),
@@ -135,7 +129,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Variable de estado para alternar vistas
   bool _esAdmin = false;
 
   @override
@@ -191,9 +184,9 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView(
         padding: EdgeInsets.all(16),
         children: [
-          _buildRoleSelector(), // El switch para tu presentación
+          _buildRoleSelector(),
           SizedBox(height: 20),
-          // Cambia la tarjeta principal según el rol
+
           _esAdmin ? _buildAdminDashboard() : _buildStatusCard(),
           SizedBox(height: 20),
           Text(
@@ -219,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // --- WIDGETS AUXILIARES ---
+  // --- WIDGETS AUXILIARES --
 
   Widget _buildRoleSelector() {
     return Center(
@@ -346,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> {
           context,
           Icons.analytics,
           "Reportes",
-          ReportesScreen(soyAdmin: _esAdmin), // Pasamos el rol
+          ReportesScreen(soyAdmin: _esAdmin),
         ),
       ],
     );
@@ -377,8 +370,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// --- PANTALLA DEL CHATBOT INTERACTIVO ---
-// --- PANTALLA DEL CHATBOT PROFESIONAL CON QUICK REPLIES ---
 class ChatBotScreen extends StatefulWidget {
   @override
   _ChatBotScreenState createState() => _ChatBotScreenState();
@@ -396,7 +387,6 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   final TextEditingController _controller = TextEditingController();
   final ScrollController _scrollController = ScrollController();
 
-  // VARIABLE CRÍTICA: Controla el flujo de la conversación
   String _estadoActual = "inicio";
 
   final List<String> _quickReplies = [
@@ -620,7 +610,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
               },
             ),
           ),
-          // Input
+
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: Row(
@@ -667,7 +657,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
   String _metodoSeleccionado = 'Transferencia';
 
   void _simularEnvio() {
-    // Simulamos una carga
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -679,8 +668,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Cierra el diálogo
-              Navigator.pop(context); // Vuelve al Home
+              Navigator.pop(context);
+              Navigator.pop(context);
             },
             child: Text("ENTENDIDO"),
           ),
@@ -737,7 +726,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             SizedBox(height: 20),
 
-            // Simulador de subida de archivo
             Container(
               height: 150,
               width: double.infinity,
@@ -842,7 +830,7 @@ class ReservasScreen extends StatelessWidget {
                 onPressed: areas[index]["status"] == "Disponible"
                     ? () =>
                           _mostrarSelectorFecha(context, areas[index]["nombre"])
-                    : null, // Deshabilitado si no está disponible
+                    : null,
                 child: Text(
                   "RESERVAR",
                   style: TextStyle(color: Colors.white, fontSize: 12),
@@ -1170,7 +1158,6 @@ class PerfilScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.red),
                       ),
                       onPressed: () {
-                        // Regresa a la pantalla de Login y quita todas las anteriores
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
@@ -1289,7 +1276,6 @@ class RegistroScreen extends StatelessWidget {
 }
 
 class CreditosScreen extends StatelessWidget {
-  // Lista de integrantes del equipo
   final List<Map<String, String>> integrantes = [
     {
       "nombre": "Wendy Díaz",
@@ -1325,7 +1311,6 @@ class CreditosScreen extends StatelessWidget {
     "imagen": "assets/images/unexca.jpg",
   };
 
-  // --- FUNCIÓN CLAVE PARA CARGAR IMÁGENES DINÁMICAMENTE ---
   ImageProvider _configurarImagen(String ruta) {
     if (ruta.startsWith('http')) {
       return NetworkImage(ruta);
@@ -1482,7 +1467,6 @@ class CreditosScreen extends StatelessWidget {
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // Ajuste para el QR
                   Image(
                     image: _configurarImagen(integrante["qr_imagen"]!),
                     width: 200,
@@ -1575,7 +1559,6 @@ class ReportesScreen extends StatelessWidget {
           ),
           SizedBox(height: 20),
 
-          // --- SECCIÓN DE TARJETAS SEGÚN ROL ---
           if (soyAdmin) ...[
             _buildStatCard(
               "Morosidad Global",

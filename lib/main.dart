@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 void main() => runApp(SigraApp());
 
 class SigraApp extends StatelessWidget {
+  const SigraApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,6 +33,8 @@ class SigraApp extends StatelessWidget {
 
 // --- PANTALLA DE LOGIN ---
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -124,6 +128,8 @@ class LoginScreen extends StatelessWidget {
 
 // --- PANTALLA PRINCIPAL (DASHBOARD) ---
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -206,8 +212,8 @@ class _HomeScreenState extends State<HomeScreen> {
             MaterialPageRoute(builder: (context) => ChatBotScreen()),
           );
         },
-        child: Icon(Icons.smart_toy, color: Colors.white),
         backgroundColor: Color(0xFFFFA000),
+        child: Icon(Icons.smart_toy, color: Colors.white),
       ),
     );
   }
@@ -371,6 +377,8 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class ChatBotScreen extends StatefulWidget {
+  const ChatBotScreen({super.key});
+
   @override
   _ChatBotScreenState createState() => _ChatBotScreenState();
 }
@@ -473,12 +481,15 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
     }
 
     // Respuestas Generales
-    if (m.contains("hola") || m.contains("buen"))
+    if (m.contains("hola") || m.contains("buen")) {
       return "¡Hola! Soy SIGRA-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?";
-    if (m.contains("gracias") || m.contains("ok") || m.contains("entendido"))
+    }
+    if (m.contains("gracias") || m.contains("ok") || m.contains("entendido")) {
       return "¡Siempre a la orden! ¿Algo más?";
-    if (m.contains("ayuda") || m.contains("que haces"))
+    }
+    if (m.contains("ayuda") || m.contains("que haces")) {
       return "Puedo informarte sobre tus pagos, registrar fallas técnicas, ayudarte con reservas o leerte las normas del edificio.";
+    }
 
     return "No logré procesar esa solicitud. Intenta preguntarme por 'pagos', 'fallas técnicas' o 'reservas'.";
   }
@@ -586,7 +597,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
             ),
           ),
           // Quick Replies
-          Container(
+          SizedBox(
             height: 50,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
@@ -649,6 +660,8 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
 
 // --- PANTALLA DE REPORTE DE PAGOS ---
 class PaymentScreen extends StatefulWidget {
+  const PaymentScreen({super.key});
+
   @override
   _PaymentScreenState createState() => _PaymentScreenState();
 }
@@ -696,7 +709,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
             ),
             SizedBox(height: 20),
             DropdownButtonFormField(
-              value: _metodoSeleccionado,
+              initialValue: _metodoSeleccionado,
               decoration: InputDecoration(
                 labelText: "Método de Pago",
                 border: OutlineInputBorder(),
@@ -793,6 +806,8 @@ class ReservasScreen extends StatelessWidget {
       "status": "Disponible",
     },
   ];
+
+  ReservasScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -896,6 +911,8 @@ class AnunciosScreen extends StatelessWidget {
       "prioridad": "Normal",
     },
   ];
+
+  AnunciosScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -1007,6 +1024,8 @@ class NormativaScreen extends StatelessWidget {
     },
   ];
 
+  NormativaScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1072,6 +1091,8 @@ class NormativaScreen extends StatelessWidget {
 
 // --- PANTALLA DE PERFIL DE USUARIO ---
 class PerfilScreen extends StatelessWidget {
+  const PerfilScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1202,6 +1223,8 @@ class PerfilScreen extends StatelessWidget {
 }
 
 class RegistroScreen extends StatelessWidget {
+  const RegistroScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1280,20 +1303,20 @@ class CreditosScreen extends StatelessWidget {
     {
       "nombre": "Wendy Díaz",
       "rol": "Redactor técnico",
-      "imagen": "https://i.ibb.co/L5gqX1r/avatar-1.png",
-      "qr_imagen": "https://i.ibb.co/C0wR4d2/qr-placeholder.png",
+      "imagen": "assets/images/empty.jpg",
+      "qr_imagen": "assets/images/empty.jpg",
     },
     {
       "nombre": "Diego Hung",
       "rol": "Desarrollador Full stack",
-      "imagen": "https://i.ibb.co/S68v4G7/avatar-2.png",
+      "imagen": "assets/images/me.png",
       "qr_imagen": "assets/images/qr_dhung.png",
     },
     {
       "nombre": "Yonahiderly Rosales",
       "rol": "Diseñador UI/UX",
-      "imagen": "https://i.ibb.co/P4w8h5p/avatar-3.png",
-      "qr_imagen": "https://i.ibb.co/C0wR4d2/qr-placeholder.png",
+      "imagen": "assets/images/empty.jpg",
+      "qr_imagen": "assets/images/qr_yonahiderly.jpeg",
     },
     {
       "nombre": "Gabriel Sanabria",
@@ -1310,6 +1333,8 @@ class CreditosScreen extends StatelessWidget {
     "telf": "0424-1938899",
     "imagen": "assets/images/unexca.jpg",
   };
+
+  CreditosScreen({super.key});
 
   ImageProvider _configurarImagen(String ruta) {
     if (ruta.startsWith('http')) {
@@ -1535,7 +1560,7 @@ class CreditosScreen extends StatelessWidget {
 class ReportesScreen extends StatelessWidget {
   final bool soyAdmin;
 
-  ReportesScreen({this.soyAdmin = false});
+  const ReportesScreen({super.key, this.soyAdmin = false});
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,9 @@
 {
-  "image": "https://raw.githubusercontent.com/dev-dhung/reside-app/main/preview.png",
+  "images": [
+    "https://raw.githubusercontent.com/dev-dhung/reside-app/main/assets/screenshots/1.jpeg",
+    "https://raw.githubusercontent.com/dev-dhung/reside-app/main/assets/screenshots/2.jpeg",
+    "https://raw.githubusercontent.com/dev-dhung/reside-app/main/assets/screenshots/3.jpeg",
+    "https://raw.githubusercontent.com/dev-dhung/reside-app/main/assets/screenshots/4.jpeg"
+  ],
   "featured": true
 }

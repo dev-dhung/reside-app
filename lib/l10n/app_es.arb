@@ -1,0 +1,477 @@
+{
+  "@@locale": "es",
+
+  "appName": "SIGRA",
+  "appSubtitle": "Residencias La Molienda",
+  "appTitle": "SIGRA - La Molienda",
+
+  "apartmentLabel": "Apartamento",
+  "passwordLabel": "Contraseña",
+  "loginButton": "INGRESAR",
+  "registerLink": "¿No tienes cuenta? Regístrate aquí",
+  "developedBy": "Desarrollado por...",
+
+  "registerTitle": "Registro SIGRA",
+  "registerSubtitle": "Crea tu cuenta de residente",
+  "fullNameLabel": "Nombre Completo",
+  "cedulaLabel": "Número de Cédula",
+  "towerApartmentLabel": "Torre / Apartamento",
+  "emailLabel": "Correo Electrónico",
+  "registerButton": "REGISTRARME",
+  "registerDescription": "Complete sus datos para registrarse",
+  "welcomeMessage": "Bienvenido",
+
+  "homeAdminTitle": "SIGRA - Gestión Admin",
+  "homeResidentTitle": "SIGRA - Mi tablero",
+  "adminSectionTitle": "Panel de Control Administrativo",
+  "residentSectionTitle": "Servicios y Gestión",
+  "modeResident": "Modo Vecino",
+  "modeAdmin": "Modo Admin",
+
+  "menuPay": "Pagar",
+  "menuHistory": "Historial",
+  "menuReservations": "Reservas",
+  "menuVisitors": "Visitantes",
+  "menuMaintenance": "Solicitudes",
+  "menuVoting": "Votaciones",
+  "menuAnnouncements": "Anuncios",
+  "menuRules": "Normativa",
+  "menuReports": "Reportes",
+  "menuEmergency": "Emergencias",
+
+  "adminRecaudation": "Recaudación Total Mensual",
+  "adminCajaLabel": "Caja de Residencia La Molienda",
+  "residentAccountStatus": "Estado de Cuenta",
+  "residentPendingLabel": "Pendiente - Enero 2026",
+
+  "paymentTitle": "Reportar Pago",
+  "transactionDetails": "Detalles de la Transacción",
+  "paymentMethodLabel": "Método de Pago",
+  "methodTransfer": "Transferencia",
+  "methodMobilePay": "Pago Móvil",
+  "methodZelle": "Zelle",
+  "methodCash": "Efectivo",
+  "referenceNumberLabel": "Número de Referencia",
+  "amountLabel": "Monto ($)",
+  "attachReceipt": "Adjuntar Comprobante",
+  "sendReportButton": "ENVIAR REPORTE",
+  "paymentSuccessMessage": "Su reporte de pago ha sido enviado con éxito a la junta de condominio. Será validado en las próximas 24 horas.",
+  "understoodButton": "ENTENDIDO",
+
+  "paymentHistoryAdminTitle": "Registro de Pagos",
+  "paymentHistoryResidentTitle": "Historial de Pagos",
+  "collectedThisMonth": "Recaudado\neste mes",
+  "toCollect": "Por cobrar",
+  "defaulters": "Morosos",
+  "totalPaid": "Total pagado",
+  "pending": "Pendiente",
+  "searchByApartment": "Buscar por apartamento",
+  "searchHintApt": "Ej: 4-B",
+  "filterAll": "Todos",
+  "filterApproved": "Aprobados",
+  "filterPending": "Pendientes",
+  "filterRejected": "Rechazados",
+  "noPaymentsMatch": "No hay pagos que coincidan con el filtro",
+  "statusApproved": "Aprobado",
+  "statusPending": "Pendiente",
+  "statusRejected": "Rechazado",
+  "aptLabel": "Apto {apartment}",
+  "@aptLabel": {
+    "placeholders": {
+      "apartment": {
+        "type": "String"
+      }
+    }
+  },
+  "refLabel": "Ref: {reference}",
+  "@refLabel": {
+    "placeholders": {
+      "reference": {
+        "type": "String"
+      }
+    }
+  },
+  "defaultPaymentDesc": "Pago",
+
+  "reservationsTitle": "Reservas La Molienda",
+  "statusAvailable": "Disponible",
+  "statusOccupied": "Ocupado",
+  "statusMaintenance": "En mantenimiento",
+  "reserveButton": "RESERVAR",
+  "reservationSentTitle": "Reserva Enviada",
+  "reservationSentMessage": "Su solicitud de reserva para \"{areaName}\" el {date} ha sido enviada para aprobación.",
+  "@reservationSentMessage": {
+    "placeholders": {
+      "areaName": {
+        "type": "String"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "acceptButton": "ACEPTAR",
+
+  "announcementsTitle": "Anuncios La Molienda",
+  "urgentLabel": "¡URGENTE!",
+  "noticeLabel": "AVISO",
+
+  "rulesTitle": "Normativa La Molienda",
+  "rulesBanner": "Reglamento de Convivencia vigente para el año 2026.",
+
+  "profileTitle": "Mi Perfil",
+  "ownerInfo": "Propietario: Apto {apartment}",
+  "@ownerInfo": {
+    "placeholders": {
+      "apartment": {
+        "type": "String"
+      }
+    }
+  },
+  "emailInfoLabel": "Correo",
+  "phoneInfoLabel": "Teléfono",
+  "solvencyStatusLabel": "Estatus de Solvencia",
+  "solvencyStatusValue": "SOLVENTE",
+  "pushNotifications": "Notificaciones Push",
+  "changePassword": "Cambiar Contraseña",
+  "logoutButton": "CERRAR SESIÓN",
+
+  "chatbotTitle": "Asistente Virtual SIGRA",
+  "chatbotGreeting": "¡Hola! Soy SIGRA-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?",
+  "chatbotPaymentMethods": "Aceptamos: \n• Transferencia (Banesco)\n• Pago Móvil\n• Zelle\n• Efectivo en oficina.\n\nAl pagar, recuerda subir tu comprobante en el módulo 'Pagar' del menú principal.",
+  "chatbotGenericFollowup": "Entendido. ¿Hay alguna otra consulta en la que pueda ayudarte?",
+  "chatbotReservationGuide": "¡Perfecto! Para reservar:\n1. Ve al menú 'Reservas'.\n2. Selecciona el área (Piscina, Parrillera, etc.).\n3. Elige la fecha.\n\nNota: Algunas áreas requieren un depósito de garantía de $20. ¿Deseas ver las normas de uso de áreas?",
+  "chatbotReservationReminder": "De acuerdo. Recuerda que las reservas deben hacerse con 48h de antelación.",
+  "chatbotAreaRules": "Las normas principales son: \n• No música a alto volumen.\n• Máximo 15 invitados.\n• Entrega del área limpia.\n\n¿Deseas ayuda con algo más?",
+  "chatbotEventWish": "Entendido. ¡Que disfrutes tu evento!",
+  "chatbotPaymentStatus": "Tu apartamento (4-B) tiene un saldo pendiente de $45.00 (Enero). ¿Deseas ver los métodos de pago disponibles?",
+  "chatbotTechnicalStatus": "Hay un reporte activo sobre la bomba de agua. El personal técnico ya está trabajando en el sitio. Estiman restablecer el servicio a las 4:00 PM.",
+  "chatbotReservationAvailable": "El módulo de reservas está habilitado para la Parrillera y el Salón de Fiestas. ¿Deseas que te explique el paso a paso para reservar?",
+  "chatbotRulesQuery": "El reglamento de La Molienda prohibe ruidos molestos después de las 8:00 PM. Las mascotas deben usar correa siempre. ¿Quieres consultar algún artículo específico?",
+  "chatbotIntro": "¡Hola! Soy SIGRA-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?",
+  "chatbotCourtesy": "¡Siempre a la orden! ¿Algo más?",
+  "chatbotCapabilities": "Puedo informarte sobre tus pagos, registrar fallas técnicas, ayudarte con reservas o leerte las normas del edificio.",
+  "chatbotError": "No logré procesar esa solicitud. Intenta preguntarme por 'pagos', 'fallas técnicas' o 'reservas'.",
+  "quickReplyDebt": "¿Cuánto debo?",
+  "quickReplyWaterIssue": "Falla de agua",
+  "quickReplyReserveArea": "Reservar áreas",
+  "quickReplyNoiseRules": "Normas de ruido",
+  "typingIndicator": "Escribiendo...",
+  "chatInputHint": "Escribe un mensaje...",
+
+  "creditsTitle": "Equipo de Desarrollo",
+  "teamMembersSection": "Integrantes del Equipo",
+  "tutorSection": "Tutor Académico",
+  "scanProfile": "Escanea para ver su perfil",
+  "closeButton": "Cerrar",
+  "copyrightNotice": "© 2026 UNEXCA",
+  "profileOf": "Perfil de {name}",
+  "@profileOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "visitorsAdminTitle": "Control de Visitantes",
+  "visitorsResidentTitle": "Mis Visitantes",
+  "searchLabel": "Buscar",
+  "searchVisitorHint": "Nombre del visitante o apartamento...",
+  "todayLabel": "Hoy",
+  "inBuildingLabel": "En edificio",
+  "pendingLabel": "Pendientes",
+  "visitorStatusPending": "Pendiente",
+  "visitorStatusApproved": "Aprobado",
+  "visitorStatusInBuilding": "En edificio",
+  "visitorStatusExited": "Salió",
+  "visitorStatusRejected": "Rechazado",
+  "noVisitorsFound": "No se encontraron visitantes",
+  "noVisitorsRegistered": "No tienes visitantes registrados",
+  "accessCodeLabel": "Código de acceso: {code}",
+  "@accessCodeLabel": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "approveButton": "Aprobar",
+  "rejectButton": "Rechazar",
+  "approveVisitorTitle": "Aprobar Visitante",
+  "rejectVisitorTitle": "Rechazar Visitante",
+  "visitorActionConfirm": "¿Está seguro que desea {action} la visita de \"{name}\" al apartamento {apartment}?",
+  "@visitorActionConfirm": {
+    "placeholders": {
+      "action": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      },
+      "apartment": {
+        "type": "String"
+      }
+    }
+  },
+  "cancelButton": "CANCELAR",
+  "approveButtonUpper": "APROBAR",
+  "rejectButtonUpper": "RECHAZAR",
+  "visitorActionSuccess": "Visitante {status} exitosamente",
+  "@visitorActionSuccess": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "registerVisitorTitle": "Registrar Visitante",
+  "visitorNameLabel": "Nombre completo",
+  "visitorCedulaLabel": "Cédula (V-XX.XXX.XXX)",
+  "visitorNameRequired": "Ingrese el nombre del visitante",
+  "visitorCedulaRequired": "Ingrese la cédula del visitante",
+  "expectedDateLabel": "Fecha esperada",
+  "vehiclePlateLabel": "Placa del vehículo (opcional)",
+  "notesOptionalLabel": "Notas (opcional)",
+  "registerVisitorButton": "Registrar Visitante",
+  "visitorRegisteredSuccess": "Visitante registrado exitosamente",
+
+  "maintenanceAdminTitle": "Gestión de Solicitudes",
+  "maintenanceResidentTitle": "Mis Solicitudes",
+  "categoryPlumbing": "Plomería",
+  "categoryElectrical": "Electricidad",
+  "categoryElevator": "Ascensor",
+  "categoryCommonAreas": "Áreas comunes",
+  "categoryStructural": "Estructura",
+  "categorySecurity": "Seguridad",
+  "categoryOther": "Otro",
+  "priorityLow": "Baja",
+  "priorityMedium": "Media",
+  "priorityHigh": "Alta",
+  "priorityUrgent": "Urgente",
+  "statusOpen": "Abierta",
+  "statusInProgress": "En Progreso",
+  "statusResolved": "Resuelta",
+  "statusClosed": "Cerrada",
+  "adminStatsOpen": "Abiertas: {count}",
+  "@adminStatsOpen": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminStatsInProgress": "En progreso: {count}",
+  "@adminStatsInProgress": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminStatsUrgent": "Urgentes: {count}",
+  "@adminStatsUrgent": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "filterOpen": "Abiertas",
+  "filterInProgress": "En Progreso",
+  "filterResolved": "Resueltas",
+  "noRequestsFilter": "No hay solicitudes con este filtro",
+  "noRequestsRegistered": "No tienes solicitudes registradas",
+  "newRequestTitle": "Nueva Solicitud",
+  "categoryLabel": "Categoría",
+  "priorityLabel": "Prioridad",
+  "titleLabel": "Título",
+  "titleHint": "Ej: Fuga de agua en la cocina",
+  "titleRequired": "Ingrese un título",
+  "descriptionLabel": "Descripción",
+  "descriptionHint": "Describa el problema con detalle...",
+  "descriptionRequired": "Ingrese una descripción",
+  "attachPhotos": "Adjuntar fotos (próximamente)",
+  "sendRequestButton": "Enviar Solicitud",
+  "requestSentSuccess": "Solicitud enviada exitosamente",
+  "statusLabel": "Estado",
+  "assignToLabel": "Asignar a",
+  "assignToHint": "Nombre del responsable",
+  "adminNotesLabel": "Notas de administración",
+  "adminNotesHint": "Observaciones internas...",
+  "saveButton": "GUARDAR",
+  "requestUpdatedSuccess": "Solicitud actualizada",
+  "assignedTo": "Asignado a: {name}",
+  "@assignedTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+
+  "votingAdminTitle": "Gestión de Votaciones",
+  "votingResidentTitle": "Votaciones",
+  "tabActive": "Activas",
+  "tabClosed": "Cerradas",
+  "tabUpcoming": "Próximas",
+  "noActivePolls": "No hay votaciones activas",
+  "noClosedPolls": "No hay votaciones cerradas",
+  "noUpcomingPolls": "No hay votaciones próximas",
+  "createPollTitle": "Crear Nueva Votación",
+  "pollTitleLabel": "Título",
+  "pollDescriptionLabel": "Descripción",
+  "optionsLabel": "Opciones",
+  "optionNumber": "Opción {number}",
+  "@optionNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "addOptionButton": "Agregar opción",
+  "startDateLabel": "Inicio",
+  "endDateLabel": "Fin",
+  "createPollButton": "CREAR VOTACIÓN",
+  "voteRegisteredSuccess": "Voto registrado exitosamente",
+  "pollCreatedSuccess": "Votación creada exitosamente",
+  "pollStatusActive": "Activa",
+  "pollStatusClosed": "Cerrada",
+  "pollStatusUpcoming": "Próximamente",
+  "pollStartsOn": "Inicia: {date}",
+  "@pollStartsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "pollEndsOn": "Finaliza: {date}",
+  "@pollEndsOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "voteButton": "VOTAR",
+  "voteResults": "{votes} ({percentage}%)",
+  "@voteResults": {
+    "placeholders": {
+      "votes": {
+        "type": "int"
+      },
+      "percentage": {
+        "type": "String"
+      }
+    }
+  },
+  "participationActive": "{count}/50 residentes han votado",
+  "@participationActive": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "closePollButton": "Cerrar votación",
+  "participationClosed": "{count}/50 residentes votaron",
+  "@participationClosed": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+
+  "emergencyTitle": "Contactos de Emergencia",
+  "emergencyBanner": "En caso de emergencia, contacte inmediatamente",
+  "emergencySection": "Emergencias",
+  "buildingSection": "Edificio",
+  "technicalSection": "Servicios Técnicos",
+  "callingTo": "Llamando a {name}...",
+  "@callingTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "available24h": "24h",
+
+  "reportsAdminTitle": "Panel de Reportes SIGRA",
+  "reportsResidentTitle": "Mis Estadísticas",
+  "reportsAdminHeading": "Resumen de Gestión La Molienda",
+  "reportsResidentHeading": "Tu Actividad en el Condominio",
+  "expenseBreakdownTitle": "Distribución de Gastos",
+  "monthlyCollectionTitle": "Recaudación Mensual",
+  "chatbotTopicsTitle": "Temas más consultados al Chatbot",
+  "chatLogsTitle": "Últimos reportes vía Chatbot",
+  "collectedLabel": "Cobrado",
+  "pendingLegendLabel": "Pendiente",
+  "resolvedByAI": "Resuelto por IA",
+  "escalatedToBoard": "Escalado a Junta",
+  "adminInsight": "Sugerencia: El volumen de dudas sobre 'Pagos' indica que el botón de ayuda debe ser más visible.",
+  "residentInsight": "Gracias por tu solvencia. Esto permite el mantenimiento de las áreas comunes.",
+
+  "notificationMessage": "Tienes un nuevo anuncio: Corte de agua programado",
+
+  "navHome": "Inicio",
+  "navPayments": "Pagos",
+  "navCommunity": "Comunidad",
+  "navServices": "Servicios",
+  "navProfile": "Perfil",
+
+  "paymentsHubTitle": "Pagos",
+  "reportPayment": "Reportar Pago",
+  "reportPaymentDesc": "Registra un nuevo pago realizado",
+  "paymentHistoryTitle": "Historial de Pagos",
+  "paymentHistoryDesc": "Consulta tus pagos anteriores",
+
+  "communityHubTitle": "Comunidad",
+  "announcementsDesc": "Noticias y comunicados del edificio",
+  "votingDesc": "Participa en las decisiones",
+  "rulesDesc": "Reglamento de convivencia",
+  "visitorsDesc": "Gestiona el acceso de visitantes",
+
+  "servicesHubTitle": "Servicios",
+  "maintenanceDesc": "Reporta problemas o fallas",
+  "reservationsDesc": "Reserva áreas comunes",
+  "emergencyDesc": "Números de contacto importantes",
+
+  "greetingMorning": "Buenos días",
+  "greetingAfternoon": "Buenas tardes",
+  "greetingEvening": "Buenas noches",
+  "quickActions": "Acciones Rápidas",
+  "recentActivity": "Actividad Reciente",
+  "viewAll": "Ver todo",
+  "chatbot": "Chatbot",
+  "reserve": "Reservar",
+  "report": "Reportar",
+  "activityPaymentApproved": "Pago aprobado",
+  "activityReservationSent": "Reserva enviada",
+  "activityNewAnnouncement": "Nuevo anuncio",
+  "activityPaymentAmount": "$150.00",
+  "activityReservationArea": "Parrillera Central",
+  "activityAnnouncementText": "Corte de agua programado",
+  "daysAgo": "Hace {count} días",
+  "@daysAgo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "adminQuickMorosos": "Morosos",
+  "adminQuickSolicitudes": "Solicitudes",
+  "adminQuickAnuncios": "Anuncios",
+  "adminQuickReportes": "Reportes",
+  "adminActivityPaymentReceived": "Pago recibido",
+  "adminActivityPaymentApt": "Apto 3-A - Transferencia",
+  "adminActivityNewRequest": "Nueva solicitud",
+  "adminActivityRequestText": "Fuga de agua - Apto 7-C",
+  "adminActivityPollClosed": "Votación cerrada",
+  "adminActivityPollText": "Pintura de fachada - 38 votos",
+  "adminBadge": "Administrador"
+}

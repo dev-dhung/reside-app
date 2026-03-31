@@ -1,0 +1,23 @@
+class User {
+  final String id;
+  final String name;
+  final String email;
+  final String phone;
+  final String apartment;
+  final String tower;
+  final bool isAdmin;
+  final bool isSolvent;
+  final String? avatarUrl;
+
+  const User({
+    required this.id,
+    required this.name,
+    required this.email,
+    required this.phone,
+    required this.apartment,
+    required this.tower,
+    this.isAdmin = false,
+    this.isSolvent = false,
+    this.avatarUrl,
+  });
+}

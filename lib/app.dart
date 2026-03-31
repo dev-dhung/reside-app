@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prototype/core/providers/settings_provider.dart';
 import 'package:prototype/core/routes/app_routes.dart';
 import 'package:prototype/core/theme/app_theme.dart';
 import 'package:prototype/l10n/app_localizations.dart';
@@ -18,19 +19,55 @@ import 'package:prototype/presentation/pages/maintenance/maintenance_page.dart';
 import 'package:prototype/presentation/pages/voting/voting_page.dart';
 import 'package:prototype/presentation/pages/payments/payment_history_page.dart';
 import 'package:prototype/presentation/pages/emergency/emergency_page.dart';
+import 'package:prototype/presentation/pages/profile/help_center_page.dart';
+import 'package:prototype/presentation/pages/profile/contact_support_page.dart';
+import 'package:prototype/presentation/pages/profile/change_password_page.dart';
+import 'package:prototype/presentation/pages/profile/terms_page.dart';
+import 'package:prototype/presentation/pages/profile/privacy_page.dart';
 
-class SigraApp extends StatelessWidget {
+class SigraApp extends StatefulWidget {
   const SigraApp({super.key});
+
+  /// Access the app state from anywhere in the widget tree.
+  /// Usage: SigraApp.of(context)?.settings.toggleTheme()
+  static SigraAppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<SigraAppState>();
+
+  @override
+  State<SigraApp> createState() => SigraAppState();
+}
+
+class SigraAppState extends State<SigraApp> {
+  final SettingsProvider settings = SettingsProvider();
+
+  @override
+  void initState() {
+    super.initState();
+    settings.addListener(_onSettingsChanged);
+  }
+
+  @override
+  void dispose() {
+    settings.removeListener(_onSettingsChanged);
+    settings.dispose();
+    super.dispose();
+  }
+
+  void _onSettingsChanged() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'SIGRA - La Molienda',
+      title: 'Reside',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: settings.themeMode,
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
-      locale: const Locale('es'),
+      locale: settings.locale,
       initialRoute: AppRoutes.login,
       onGenerateRoute: _onGenerateRoute,
     );
@@ -43,7 +80,13 @@ class SigraApp extends StatelessWidget {
       case AppRoutes.register:
         return _buildRoute(const RegisterPage(), settings);
       case AppRoutes.home:
-        return _buildRoute(const MainShell(), settings);
+        final homeArgs = settings.arguments as Map<String, dynamic>?;
+        final homeIsAdmin = homeArgs?['isAdmin'] as bool? ?? false;
+        final homeUserName = homeArgs?['userName'] as String? ?? '';
+        return _buildRoute(
+          MainShell(isAdmin: homeIsAdmin, userName: homeUserName),
+          settings,
+        );
       case AppRoutes.payment:
         return _buildRoute(const PaymentPage(), settings);
       case AppRoutes.reservations:
@@ -80,6 +123,16 @@ class SigraApp extends StatelessWidget {
         return _buildRoute(PaymentHistoryPage(isAdmin: isAdmin), settings);
       case AppRoutes.emergency:
         return _buildRoute(const EmergencyPage(), settings);
+      case AppRoutes.helpCenter:
+        return _buildRoute(const HelpCenterPage(), settings);
+      case AppRoutes.contactSupport:
+        return _buildRoute(const ContactSupportPage(), settings);
+      case AppRoutes.changePassword:
+        return _buildRoute(const ChangePasswordPage(), settings);
+      case AppRoutes.terms:
+        return _buildRoute(const TermsPage(), settings);
+      case AppRoutes.privacy:
+        return _buildRoute(const PrivacyPage(), settings);
       default:
         return _buildRoute(const LoginPage(), settings);
     }

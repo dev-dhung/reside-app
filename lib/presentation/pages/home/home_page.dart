@@ -3,40 +3,20 @@ import 'package:prototype/core/constants/app_colors.dart';
 import 'package:prototype/core/constants/app_dimensions.dart';
 import 'package:prototype/core/routes/app_routes.dart';
 import 'package:prototype/l10n/app_localizations.dart';
+import 'package:prototype/presentation/atoms/wave_header.dart';
 import 'package:prototype/presentation/organisms/dashboard_header.dart';
-import 'package:prototype/presentation/organisms/notification_bell.dart';
-import 'package:prototype/presentation/organisms/role_selector.dart';
+import 'package:prototype/presentation/pages/home/activity_page.dart';
+import 'package:prototype/presentation/pages/home/notifications_sheet.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   final bool isAdmin;
-  final ValueChanged<bool>? onAdminChanged;
+  final String userName;
 
   const HomePage({
     super.key,
     this.isAdmin = false,
-    this.onAdminChanged,
+    this.userName = '',
   });
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  late bool _isAdmin;
-
-  @override
-  void initState() {
-    super.initState();
-    _isAdmin = widget.isAdmin;
-  }
-
-  @override
-  void didUpdateWidget(covariant HomePage oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.isAdmin != widget.isAdmin) {
-      _isAdmin = widget.isAdmin;
-    }
-  }
 
   String _getGreeting(L10n l10n) {
     final hour = DateTime.now().hour;
@@ -48,143 +28,184 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     final l10n = L10n.of(context);
+    final displayName = userName.isNotEmpty ? userName : 'María García';
 
     return Scaffold(
       backgroundColor: AppColors.scaffoldBackground,
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(
-          AppDimensions.paddingXL,
-          AppDimensions.paddingXL,
-          AppDimensions.paddingXL,
-          AppDimensions.paddingHero,
-        ),
+      body: Column(
         children: [
-          // 1. Greeting Header
-          _buildGreetingHeader(l10n),
-          const SizedBox(height: AppDimensions.paddingXL),
+          // -- Wave header --
+          WaveHeader(
+            height: 160,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimensions.paddingXL,
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            _getGreeting(l10n),
+                            style: TextStyle(
+                              fontSize: AppDimensions.fontMedium,
+                              fontWeight: FontWeight.w300,
+                              color: Colors.white.withValues(alpha: 0.85),
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Row(
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  displayName,
+                                  style: const TextStyle(
+                                    fontSize: AppDimensions.fontXL,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              if (isAdmin) ...[
+                                const SizedBox(width: 8),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withValues(alpha: 0.2),
+                                    borderRadius: BorderRadius.circular(
+                                      AppDimensions.radiusPill,
+                                    ),
+                                  ),
+                                  child: Text(
+                                    l10n.adminBadge,
+                                    style: const TextStyle(
+                                      fontSize: AppDimensions.fontXS,
+                                      fontWeight: FontWeight.w600,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: AppDimensions.paddingSmall),
+                    GestureDetector(
+                      onTap: () => showNotificationsSheet(context),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 40,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withValues(alpha: 0.15),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.notifications_outlined,
+                              color: Colors.white,
+                              size: AppDimensions.iconMedium,
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: Container(
+                              width: 10,
+                              height: 10,
+                              decoration: BoxDecoration(
+                                color: AppColors.error,
+                                shape: BoxShape.circle,
+                                border: Border.all(
+                                  color: AppColors.primary,
+                                  width: 1.5,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: AppDimensions.paddingSmall),
+                    GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, AppRoutes.profile),
+                      child: Container(
+                        width: AppDimensions.avatarMedium,
+                        height: AppDimensions.avatarMedium,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white.withValues(alpha: 0.4),
+                            width: 2,
+                          ),
+                        ),
+                        child: const Icon(
+                          Icons.person_rounded,
+                          color: Colors.white,
+                          size: AppDimensions.iconMedium,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
 
-          // 2. Role Selector
-          RoleSelector(
-            isAdmin: _isAdmin,
-            onChanged: (val) {
-              setState(() => _isAdmin = val);
-              widget.onAdminChanged?.call(val);
-            },
+          // -- Content --
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: AppDimensions.paddingLarge,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: AppDimensions.paddingMedium),
+
+                  // Balance card - full width
+                  SizedBox(
+                    width: double.infinity,
+                    child: DashboardHeader(isAdmin: isAdmin),
+                  ),
+                  const SizedBox(height: AppDimensions.paddingLarge),
+
+                  // Quick Actions
+                  _buildQuickActionsSection(context, l10n),
+                  const SizedBox(height: AppDimensions.paddingLarge),
+
+                  // Recent Activity (fills remaining space)
+                  Expanded(
+                    child: _buildRecentActivitySection(context, l10n),
+                  ),
+                  const SizedBox(height: AppDimensions.paddingSmall),
+                ],
+              ),
+            ),
           ),
-          const SizedBox(height: AppDimensions.paddingXL),
-
-          // 3. Dashboard Header (balance card)
-          DashboardHeader(isAdmin: _isAdmin),
-          const SizedBox(height: AppDimensions.paddingXL),
-
-          // 4. Quick Actions
-          _buildQuickActionsSection(l10n),
-          const SizedBox(height: AppDimensions.paddingXL),
-
-          // 5. Recent Activity
-          _buildRecentActivitySection(l10n),
         ],
       ),
     );
   }
 
-  // ─── Greeting Header ───────────────────────────────────────────────
+  // --- Quick Actions as horizontal cards ----------------------------------------
 
-  Widget _buildGreetingHeader(L10n l10n) {
-    return Row(
-      children: [
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                _getGreeting(l10n),
-                style: const TextStyle(
-                  fontSize: AppDimensions.fontXL,
-                  fontWeight: FontWeight.w300,
-                  color: AppColors.textSecondary,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Row(
-                children: [
-                  Flexible(
-                    child: Text(
-                      'María García',
-                      style: const TextStyle(
-                        fontSize: AppDimensions.fontTitle,
-                        fontWeight: FontWeight.w600,
-                        color: AppColors.textPrimary,
-                      ),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  if (_isAdmin) ...[
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.accent.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(
-                          AppDimensions.radiusPill,
-                        ),
-                      ),
-                      child: Text(
-                        l10n.adminBadge,
-                        style: const TextStyle(
-                          fontSize: AppDimensions.fontXS,
-                          fontWeight: FontWeight.w600,
-                          color: AppColors.accentDark,
-                        ),
-                      ),
-                    ),
-                  ],
-                ],
-              ),
-              const SizedBox(height: 2),
-              Text(
-                l10n.appSubtitle,
-                style: const TextStyle(
-                  fontSize: AppDimensions.fontBody,
-                  fontWeight: FontWeight.w400,
-                  color: AppColors.textTertiary,
-                ),
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(width: AppDimensions.paddingSmall),
-        NotificationBell(
-          count: 1,
-          onTap: () {},
-        ),
-        const SizedBox(width: AppDimensions.paddingSmall),
-        GestureDetector(
-          onTap: () => Navigator.pushNamed(context, AppRoutes.profile),
-          child: Container(
-            width: AppDimensions.avatarMedium,
-            height: AppDimensions.avatarMedium,
-            decoration: const BoxDecoration(
-              color: AppColors.primarySurface,
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(
-              Icons.person_rounded,
-              color: AppColors.primary,
-              size: AppDimensions.iconMedium,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
+  Widget _buildQuickActionsSection(BuildContext context, L10n l10n) {
+    final actions = isAdmin
+        ? _adminActions(context, l10n)
+        : _residentActions(context, l10n);
 
-  // ─── Quick Actions ─────────────────────────────────────────────────
-
-  Widget _buildQuickActionsSection(L10n l10n) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -197,41 +218,53 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         const SizedBox(height: AppDimensions.paddingMedium),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: _isAdmin
-                ? _buildAdminQuickActions(l10n)
-                : _buildResidentQuickActions(l10n),
+        // Two rows of action cards
+        for (int i = 0; i < actions.length; i += 2) ...[
+          if (i > 0) const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(child: actions[i]),
+              const SizedBox(width: 10),
+              Expanded(
+                child: i + 1 < actions.length
+                    ? actions[i + 1]
+                    : const SizedBox(),
+              ),
+            ],
           ),
-        ),
+        ],
       ],
     );
   }
 
-  List<Widget> _buildResidentQuickActions(L10n l10n) {
+  List<Widget> _residentActions(BuildContext context, L10n l10n) {
     return [
-      _QuickActionItem(
+      _ActionCard(
         icon: Icons.payment_rounded,
         label: l10n.menuPay,
+        subtitle: 'Reportar pagos',
+        color: AppColors.primary,
         onTap: () => Navigator.pushNamed(context, AppRoutes.payment),
       ),
-      const SizedBox(width: AppDimensions.paddingLarge),
-      _QuickActionItem(
+      _ActionCard(
         icon: Icons.smart_toy_rounded,
         label: l10n.chatbot,
+        subtitle: 'Asistente virtual',
+        color: AppColors.accent,
         onTap: () => Navigator.pushNamed(context, AppRoutes.chatbot),
       ),
-      const SizedBox(width: AppDimensions.paddingLarge),
-      _QuickActionItem(
+      _ActionCard(
         icon: Icons.event_rounded,
         label: l10n.reserve,
+        subtitle: 'Áreas comunes',
+        color: AppColors.info,
         onTap: () => Navigator.pushNamed(context, AppRoutes.reservations),
       ),
-      const SizedBox(width: AppDimensions.paddingLarge),
-      _QuickActionItem(
+      _ActionCard(
         icon: Icons.build_rounded,
         label: l10n.report,
+        subtitle: 'Mantenimiento',
+        color: AppColors.warning,
         onTap: () => Navigator.pushNamed(
           context,
           AppRoutes.maintenance,
@@ -241,37 +274,42 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
-  List<Widget> _buildAdminQuickActions(L10n l10n) {
+  List<Widget> _adminActions(BuildContext context, L10n l10n) {
     return [
-      _QuickActionItem(
+      _ActionCard(
         icon: Icons.money_off_rounded,
         label: l10n.adminQuickMorosos,
+        subtitle: 'Pendientes',
+        color: AppColors.error,
         onTap: () => Navigator.pushNamed(
           context,
           AppRoutes.paymentHistory,
           arguments: {'isAdmin': true},
         ),
       ),
-      const SizedBox(width: AppDimensions.paddingLarge),
-      _QuickActionItem(
+      _ActionCard(
         icon: Icons.assignment_rounded,
         label: l10n.adminQuickSolicitudes,
+        subtitle: 'Gestionar',
+        color: AppColors.warning,
         onTap: () => Navigator.pushNamed(
           context,
           AppRoutes.maintenance,
           arguments: {'isAdmin': true},
         ),
       ),
-      const SizedBox(width: AppDimensions.paddingLarge),
-      _QuickActionItem(
+      _ActionCard(
         icon: Icons.campaign_rounded,
         label: l10n.adminQuickAnuncios,
+        subtitle: 'Publicar',
+        color: AppColors.info,
         onTap: () => Navigator.pushNamed(context, AppRoutes.announcements),
       ),
-      const SizedBox(width: AppDimensions.paddingLarge),
-      _QuickActionItem(
+      _ActionCard(
         icon: Icons.analytics_rounded,
         label: l10n.adminQuickReportes,
+        subtitle: 'Métricas',
+        color: AppColors.primary,
         onTap: () => Navigator.pushNamed(
           context,
           AppRoutes.reports,
@@ -281,9 +319,9 @@ class _HomePageState extends State<HomePage> {
     ];
   }
 
-  // ─── Recent Activity ───────────────────────────────────────────────
+  // --- Recent Activity -----------------------------------------------------------
 
-  Widget _buildRecentActivitySection(L10n l10n) {
+  Widget _buildRecentActivitySection(BuildContext context, L10n l10n) {
     return Column(
       children: [
         Row(
@@ -298,7 +336,12 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             GestureDetector(
-              onTap: () {},
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ActivityPage(isAdmin: isAdmin),
+                ),
+              ),
               child: Text(
                 l10n.viewAll,
                 style: const TextStyle(
@@ -311,7 +354,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         const SizedBox(height: AppDimensions.paddingMedium),
-        _isAdmin
+        isAdmin
             ? _buildAdminActivityFeed(l10n)
             : _buildResidentActivityFeed(l10n),
       ],
@@ -334,13 +377,6 @@ class _HomePageState extends State<HomePage> {
           subtitle: l10n.activityReservationArea,
           trailing: l10n.daysAgo(3),
         ),
-        const SizedBox(height: AppDimensions.paddingSmall),
-        _ActivityCard(
-          dotColor: AppColors.info,
-          title: l10n.activityNewAnnouncement,
-          subtitle: l10n.activityAnnouncementText,
-          trailing: l10n.daysAgo(5),
-        ),
       ],
     );
   }
@@ -361,28 +397,25 @@ class _HomePageState extends State<HomePage> {
           subtitle: l10n.adminActivityRequestText,
           trailing: l10n.daysAgo(2),
         ),
-        const SizedBox(height: AppDimensions.paddingSmall),
-        _ActivityCard(
-          dotColor: AppColors.info,
-          title: l10n.adminActivityPollClosed,
-          subtitle: l10n.adminActivityPollText,
-          trailing: l10n.daysAgo(4),
-        ),
       ],
     );
   }
 }
 
-// ─── Quick Action Circle Widget ────────────────────────────────────────
+// --- Action Card (replaces circle quick actions) ---------------------------------
 
-class _QuickActionItem extends StatelessWidget {
+class _ActionCard extends StatelessWidget {
   final IconData icon;
   final String label;
+  final String subtitle;
+  final Color color;
   final VoidCallback onTap;
 
-  const _QuickActionItem({
+  const _ActionCard({
     required this.icon,
     required this.label,
+    required this.subtitle,
+    required this.color,
     required this.onTap,
   });
 
@@ -390,34 +423,57 @@ class _QuickActionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: SizedBox(
-        width: 72,
-        child: Column(
+      child: Container(
+        padding: const EdgeInsets.all(14),
+        decoration: BoxDecoration(
+          color: AppColors.cardBackground,
+          borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.shadow,
+              blurRadius: 16,
+              offset: const Offset(0, 3),
+            ),
+          ],
+        ),
+        child: Row(
           children: [
             Container(
-              width: 56,
-              height: 56,
-              decoration: const BoxDecoration(
-                color: AppColors.primarySurface,
-                shape: BoxShape.circle,
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: color.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(14),
               ),
-              child: Icon(
-                icon,
-                color: AppColors.primary,
-                size: AppDimensions.iconMedium,
-              ),
+              child: Icon(icon, color: color, size: 22),
             ),
-            const SizedBox(height: AppDimensions.paddingSmall),
-            Text(
-              label,
-              style: const TextStyle(
-                fontSize: AppDimensions.fontSmall,
-                fontWeight: FontWeight.w500,
-                color: AppColors.textSecondary,
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    label,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.textPrimary,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 2),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: AppColors.textTertiary,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
               ),
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
@@ -426,7 +482,7 @@ class _QuickActionItem extends StatelessWidget {
   }
 }
 
-// ─── Activity Feed Card Widget ─────────────────────────────────────────
+// --- Activity Feed Card ----------------------------------------------------------
 
 class _ActivityCard extends StatelessWidget {
   final Color dotColor;
@@ -448,11 +504,11 @@ class _ActivityCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.shadow,
-            blurRadius: 12,
-            offset: Offset(0, 2),
+            blurRadius: 16,
+            offset: const Offset(0, 3),
           ),
         ],
       ),

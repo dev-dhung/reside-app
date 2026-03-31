@@ -9,7 +9,14 @@ import 'package:prototype/presentation/pages/profile/profile_page.dart';
 import 'package:prototype/presentation/pages/services/services_hub_page.dart';
 
 class MainShell extends StatefulWidget {
-  const MainShell({super.key});
+  final bool isAdmin;
+  final String userName;
+
+  const MainShell({
+    super.key,
+    this.isAdmin = false,
+    this.userName = '',
+  });
 
   @override
   State<MainShell> createState() => _MainShellState();
@@ -17,11 +24,6 @@ class MainShell extends StatefulWidget {
 
 class _MainShellState extends State<MainShell> {
   int _currentIndex = 0;
-  bool _isAdmin = false;
-
-  void _onAdminChanged(bool value) {
-    setState(() => _isAdmin = value);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,12 +31,12 @@ class _MainShellState extends State<MainShell> {
 
     final pages = <Widget>[
       HomePage(
-        isAdmin: _isAdmin,
-        onAdminChanged: _onAdminChanged,
+        isAdmin: widget.isAdmin,
+        userName: widget.userName,
       ),
-      PaymentsHubPage(isAdmin: _isAdmin),
-      CommunityHubPage(isAdmin: _isAdmin),
-      ServicesHubPage(isAdmin: _isAdmin),
+      PaymentsHubPage(isAdmin: widget.isAdmin),
+      CommunityHubPage(isAdmin: widget.isAdmin),
+      ServicesHubPage(isAdmin: widget.isAdmin),
       const ProfilePage(),
     ];
 
@@ -44,54 +46,68 @@ class _MainShellState extends State<MainShell> {
         children: pages,
       ),
       bottomNavigationBar: Container(
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           color: AppColors.navBackground,
-          border: Border(
-            top: BorderSide(color: AppColors.divider, width: 1),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.shadowMedium,
+              blurRadius: 12,
+              offset: const Offset(0, -2),
+            ),
+          ],
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
         ),
-        child: SafeArea(
-          child: SizedBox(
-            height: AppDimensions.bottomNavHeight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _NavItem(
-                  icon: Icons.home_outlined,
-                  activeIcon: Icons.home_rounded,
-                  label: l10n.navHome,
-                  isSelected: _currentIndex == 0,
-                  onTap: () => setState(() => _currentIndex = 0),
-                ),
-                _NavItem(
-                  icon: Icons.account_balance_wallet_outlined,
-                  activeIcon: Icons.account_balance_wallet,
-                  label: l10n.navPayments,
-                  isSelected: _currentIndex == 1,
-                  onTap: () => setState(() => _currentIndex = 1),
-                ),
-                _NavItem(
-                  icon: Icons.people_outlined,
-                  activeIcon: Icons.people,
-                  label: l10n.navCommunity,
-                  isSelected: _currentIndex == 2,
-                  onTap: () => setState(() => _currentIndex = 2),
-                ),
-                _NavItem(
-                  icon: Icons.handyman_outlined,
-                  activeIcon: Icons.handyman,
-                  label: l10n.navServices,
-                  isSelected: _currentIndex == 3,
-                  onTap: () => setState(() => _currentIndex = 3),
-                ),
-                _NavItem(
-                  icon: Icons.person_outlined,
-                  activeIcon: Icons.person,
-                  label: l10n.navProfile,
-                  isSelected: _currentIndex == 4,
-                  onTap: () => setState(() => _currentIndex = 4),
-                ),
-              ],
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
+          ),
+          child: SafeArea(
+            child: SizedBox(
+              height: AppDimensions.bottomNavHeight,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  _NavItem(
+                    icon: Icons.home_outlined,
+                    activeIcon: Icons.home_rounded,
+                    label: l10n.navHome,
+                    isSelected: _currentIndex == 0,
+                    onTap: () => setState(() => _currentIndex = 0),
+                  ),
+                  _NavItem(
+                    icon: Icons.account_balance_wallet_outlined,
+                    activeIcon: Icons.account_balance_wallet,
+                    label: l10n.navPayments,
+                    isSelected: _currentIndex == 1,
+                    onTap: () => setState(() => _currentIndex = 1),
+                  ),
+                  _NavItem(
+                    icon: Icons.people_outlined,
+                    activeIcon: Icons.people,
+                    label: l10n.navCommunity,
+                    isSelected: _currentIndex == 2,
+                    onTap: () => setState(() => _currentIndex = 2),
+                  ),
+                  _NavItem(
+                    icon: Icons.handyman_outlined,
+                    activeIcon: Icons.handyman,
+                    label: l10n.navServices,
+                    isSelected: _currentIndex == 3,
+                    onTap: () => setState(() => _currentIndex = 3),
+                  ),
+                  _NavItem(
+                    icon: Icons.person_outlined,
+                    activeIcon: Icons.person,
+                    label: l10n.navProfile,
+                    isSelected: _currentIndex == 4,
+                    onTap: () => setState(() => _currentIndex = 4),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
@@ -125,18 +141,34 @@ class _NavItem extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              isSelected ? activeIcon : icon,
-              color: isSelected ? AppColors.navActive : AppColors.navInactive,
-              size: AppDimensions.bottomNavIconSize,
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              child: Icon(
+                isSelected ? activeIcon : icon,
+                color:
+                    isSelected ? AppColors.navActive : AppColors.navInactive,
+                size: isSelected ? 28 : AppDimensions.bottomNavIconSize,
+              ),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 2),
+            // Dot indicator for active tab
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: isSelected ? 5 : 0,
+              height: isSelected ? 5 : 0,
+              decoration: const BoxDecoration(
+                color: AppColors.navActive,
+                shape: BoxShape.circle,
+              ),
+            ),
+            const SizedBox(height: 2),
             Text(
               label,
               style: TextStyle(
                 fontSize: AppDimensions.fontXS,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-                color: isSelected ? AppColors.navActive : AppColors.navInactive,
+                color:
+                    isSelected ? AppColors.navActive : AppColors.navInactive,
               ),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

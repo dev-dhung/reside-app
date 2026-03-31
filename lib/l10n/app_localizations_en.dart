@@ -9,19 +9,25 @@ class L10nEn extends L10n {
   L10nEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'SIGRA';
+  String get appName => 'Reside';
 
   @override
-  String get appSubtitle => 'La Molienda Residences';
+  String get appSubtitle => 'Your community, connected';
 
   @override
-  String get appTitle => 'SIGRA - La Molienda';
+  String get appTitle => 'Reside';
 
   @override
-  String get apartmentLabel => 'Apartment';
+  String get emailOrPhoneLabel => 'Email or phone number';
 
   @override
   String get passwordLabel => 'Password';
+
+  @override
+  String get rememberMe => 'Remember me';
+
+  @override
+  String get forgotPassword => 'Forgot your password?';
 
   @override
   String get loginButton => 'LOG IN';
@@ -33,10 +39,34 @@ class L10nEn extends L10n {
   String get developedBy => 'Developed by...';
 
   @override
-  String get registerTitle => 'SIGRA Registration';
+  String get registerTitle => 'Registration';
 
   @override
-  String get registerSubtitle => 'Create your resident account';
+  String get registerSubtitle => 'Activate your account';
+
+  @override
+  String get registerDescription => 'Fill in your details to register';
+
+  @override
+  String get invitationCodeLabel => 'Invitation code';
+
+  @override
+  String get invitationCodeHint => 'E.g.: RES-4B-2026';
+
+  @override
+  String get emailLabel => 'Email address';
+
+  @override
+  String get phoneLabel => 'Phone number';
+
+  @override
+  String get confirmPasswordLabel => 'Confirm password';
+
+  @override
+  String get registerButton => 'CREATE ACCOUNT';
+
+  @override
+  String get apartmentLabel => 'Apartment';
 
   @override
   String get fullNameLabel => 'Full Name';
@@ -48,22 +78,13 @@ class L10nEn extends L10n {
   String get towerApartmentLabel => 'Tower / Apartment';
 
   @override
-  String get emailLabel => 'Email';
-
-  @override
-  String get registerButton => 'REGISTER';
-
-  @override
-  String get registerDescription => 'Fill in your details to register';
-
-  @override
   String get welcomeMessage => 'Welcome';
 
   @override
-  String get homeAdminTitle => 'SIGRA - Admin Dashboard';
+  String get homeAdminTitle => 'Reside - Admin Dashboard';
 
   @override
-  String get homeResidentTitle => 'SIGRA - My Dashboard';
+  String get homeResidentTitle => 'Reside - My Dashboard';
 
   @override
   String get adminSectionTitle => 'Administrative Control Panel';
@@ -111,7 +132,7 @@ class L10nEn extends L10n {
   String get adminRecaudation => 'Total Monthly Revenue';
 
   @override
-  String get adminCajaLabel => 'La Molienda Residence Fund';
+  String get adminCajaLabel => 'Residence Fund';
 
   @override
   String get residentAccountStatus => 'Account Status';
@@ -224,7 +245,7 @@ class L10nEn extends L10n {
   String get defaultPaymentDesc => 'Payment';
 
   @override
-  String get reservationsTitle => 'La Molienda Reservations';
+  String get reservationsTitle => 'Reservations';
 
   @override
   String get statusAvailable => 'Available';
@@ -250,7 +271,7 @@ class L10nEn extends L10n {
   String get acceptButton => 'ACCEPT';
 
   @override
-  String get announcementsTitle => 'La Molienda Announcements';
+  String get announcementsTitle => 'Announcements';
 
   @override
   String get urgentLabel => 'URGENT!';
@@ -259,7 +280,7 @@ class L10nEn extends L10n {
   String get noticeLabel => 'NOTICE';
 
   @override
-  String get rulesTitle => 'La Molienda Regulations';
+  String get rulesTitle => 'Regulations';
 
   @override
   String get rulesBanner =>
@@ -295,11 +316,11 @@ class L10nEn extends L10n {
   String get logoutButton => 'LOG OUT';
 
   @override
-  String get chatbotTitle => 'SIGRA Virtual Assistant';
+  String get chatbotTitle => 'Reside Virtual Assistant';
 
   @override
   String get chatbotGreeting =>
-      'Hello! I\'m SIGRA-Bot, your virtual assistant. How can I help you today?';
+      'Hello! I\'m Reside-Bot, your virtual assistant. How can I help you today?';
 
   @override
   String get chatbotPaymentMethods =>
@@ -338,11 +359,11 @@ class L10nEn extends L10n {
 
   @override
   String get chatbotRulesQuery =>
-      'La Molienda regulations prohibit loud noise after 8:00 PM. Pets must always be on a leash. Would you like to check a specific article?';
+      'Regulations prohibit loud noise after 8:00 PM. Pets must always be on a leash. Would you like to check a specific article?';
 
   @override
   String get chatbotIntro =>
-      'Hello! I\'m SIGRA-Bot. I\'m ready to help you manage your apartment. What do you need?';
+      'Hello! I\'m Reside-Bot. I\'m ready to help you manage your apartment. What do you need?';
 
   @override
   String get chatbotCourtesy => 'Always at your service! Anything else?';
@@ -770,13 +791,13 @@ class L10nEn extends L10n {
   String get available24h => '24h';
 
   @override
-  String get reportsAdminTitle => 'SIGRA Reports Panel';
+  String get reportsAdminTitle => 'Reside Reports Panel';
 
   @override
   String get reportsResidentTitle => 'My Statistics';
 
   @override
-  String get reportsAdminHeading => 'La Molienda Management Summary';
+  String get reportsAdminHeading => 'Management Summary';
 
   @override
   String get reportsResidentHeading => 'Your Condo Activity';

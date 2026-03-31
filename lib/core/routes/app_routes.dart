@@ -17,4 +17,9 @@ class AppRoutes {
   static const String voting = '/voting';
   static const String paymentHistory = '/payment-history';
   static const String emergency = '/emergency';
+  static const String helpCenter = '/help-center';
+  static const String contactSupport = '/contact-support';
+  static const String changePassword = '/change-password';
+  static const String terms = '/terms';
+  static const String privacy = '/privacy';
 }

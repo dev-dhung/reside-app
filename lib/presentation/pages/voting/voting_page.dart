@@ -290,7 +290,7 @@ class _VotingPageState extends State<VotingPage> {
           : null,
       body: Column(
         children: [
-          // Custom pill tabs
+          // Custom pill tabs - organic with shadow
           Padding(
             padding: const EdgeInsets.fromLTRB(
               AppDimensions.paddingMedium,
@@ -321,6 +321,16 @@ class _VotingPageState extends State<VotingPage> {
                               : Colors.transparent,
                           borderRadius: BorderRadius.circular(
                               AppDimensions.radiusPill),
+                          boxShadow: isActive
+                              ? [
+                                  BoxShadow(
+                                    color: AppColors.primary
+                                        .withValues(alpha: 0.3),
+                                    blurRadius: 8,
+                                    offset: const Offset(0, 2),
+                                  ),
+                                ]
+                              : null,
                         ),
                         child: Center(
                           child: Text(
@@ -401,66 +411,81 @@ class _VotingPageState extends State<VotingPage> {
     final showResults =
         hasVoted || poll.status == PollStatus.closed;
 
-    return AppCard(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
+    return Column(
+      children: [
+        // Accent line at top
+        Container(
+          height: 3,
+          margin: const EdgeInsets.symmetric(horizontal: 24),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: AppColors.gradientPrimary,
+            ),
+            borderRadius: BorderRadius.circular(3),
+          ),
+        ),
+        AppCard(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Expanded(
-                child: Text(
-                  poll.title,
-                  style: const TextStyle(
-                    fontSize: AppDimensions.fontLarge,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      poll.title,
+                      style: const TextStyle(
+                        fontSize: AppDimensions.fontLarge,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: AppDimensions.paddingSmall),
+                  _statusBadge(poll.status),
+                ],
+              ),
+              const SizedBox(height: AppDimensions.paddingSmall),
+              Text(
+                poll.description,
+                style: const TextStyle(
+                  fontSize: AppDimensions.fontBody,
+                  color: AppColors.textSecondary,
+                ),
+              ),
+              const SizedBox(height: AppDimensions.paddingMedium),
+
+              if (poll.status == PollStatus.upcoming)
+                _buildUpcomingInfo(poll)
+              else if (showResults)
+                _buildResults(poll)
+              else
+                _buildVoteOptions(poll),
+
+              // Participation indicator
+              if (poll.status == PollStatus.active ||
+                  poll.status == PollStatus.closed) ...[
+                const SizedBox(height: AppDimensions.paddingMedium),
+                _buildParticipationBar(poll),
+              ],
+
+              // Admin extras
+              if (widget.isAdmin && poll.status == PollStatus.active) ...[
+                const SizedBox(height: AppDimensions.paddingSmall),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(
+                    onPressed: () => _closePollEarly(poll),
+                    child: Text(
+                      l10n.closePollButton,
+                      style: const TextStyle(color: AppColors.error),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: AppDimensions.paddingSmall),
-              _statusBadge(poll.status),
+              ],
             ],
           ),
-          const SizedBox(height: AppDimensions.paddingSmall),
-          Text(
-            poll.description,
-            style: const TextStyle(
-              fontSize: AppDimensions.fontBody,
-              color: AppColors.textSecondary,
-            ),
-          ),
-          const SizedBox(height: AppDimensions.paddingMedium),
-
-          if (poll.status == PollStatus.upcoming)
-            _buildUpcomingInfo(poll)
-          else if (showResults)
-            _buildResults(poll)
-          else
-            _buildVoteOptions(poll),
-
-          // Participation indicator
-          if (poll.status == PollStatus.active ||
-              poll.status == PollStatus.closed) ...[
-            const SizedBox(height: AppDimensions.paddingMedium),
-            _buildParticipationBar(poll),
-          ],
-
-          // Admin extras
-          if (widget.isAdmin && poll.status == PollStatus.active) ...[
-            const SizedBox(height: AppDimensions.paddingSmall),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () => _closePollEarly(poll),
-                child: Text(
-                  l10n.closePollButton,
-                  style: const TextStyle(color: AppColors.error),
-                ),
-              ),
-            ),
-          ],
-        ],
-      ),
+        ),
+      ],
     );
   }
 
@@ -502,7 +527,7 @@ class _VotingPageState extends State<VotingPage> {
           borderRadius:
               BorderRadius.circular(AppDimensions.radiusPill),
           child: SizedBox(
-            height: 6,
+            height: 10,
             child: LinearProgressIndicator(
               value: progress,
               backgroundColor: AppColors.divider,
@@ -667,7 +692,7 @@ class _VotingPageState extends State<VotingPage> {
                 borderRadius: BorderRadius.circular(
                     AppDimensions.radiusPill),
                 child: SizedBox(
-                  height: 8,
+                  height: 10,
                   child: Stack(
                     children: [
                       Container(
@@ -682,7 +707,12 @@ class _VotingPageState extends State<VotingPage> {
                             (opt.percentage / 100).clamp(0.0, 1.0),
                         child: Container(
                           decoration: BoxDecoration(
-                            color: barColor,
+                            gradient: LinearGradient(
+                              colors: [
+                                barColor,
+                                barColor.withValues(alpha: 0.7),
+                              ],
+                            ),
                             borderRadius: BorderRadius.circular(
                                 AppDimensions.radiusPill),
                           ),

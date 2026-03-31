@@ -182,6 +182,13 @@ class _VisitorsPageState extends State<VisitorsPage> {
         decoration: BoxDecoration(
           color: AppColors.inputBackground,
           borderRadius: BorderRadius.circular(AppDimensions.radiusPill),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.shadow,
+              blurRadius: 12,
+              offset: const Offset(0, 3),
+            ),
+          ],
         ),
         child: TextField(
           controller: _searchController,
@@ -249,17 +256,27 @@ class _VisitorsPageState extends State<VisitorsPage> {
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: AppColors.shadow,
+            color: color.withValues(alpha: 0.12),
             blurRadius: 12,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          // Organic colored dot on top
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(
+              color: color,
+              shape: BoxShape.circle,
+            ),
+          ),
+          const SizedBox(height: AppDimensions.paddingXS),
           Text(
             count.toString(),
             style: TextStyle(
@@ -693,7 +710,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
             return Padding(
               padding: EdgeInsets.fromLTRB(
                 AppDimensions.paddingLarge,
-                AppDimensions.paddingLarge,
+                AppDimensions.paddingMedium,
                 AppDimensions.paddingLarge,
                 MediaQuery.of(ctx).viewInsets.bottom +
                     AppDimensions.paddingLarge,
@@ -705,13 +722,14 @@ class _VisitorsPageState extends State<VisitorsPage> {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      // Grab handle
                       Center(
                         child: Container(
                           width: 40,
-                          height: 4,
+                          height: 5,
                           decoration: BoxDecoration(
                             color: AppColors.divider,
-                            borderRadius: BorderRadius.circular(2),
+                            borderRadius: BorderRadius.circular(3),
                           ),
                         ),
                       ),

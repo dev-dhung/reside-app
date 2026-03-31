@@ -17,6 +17,7 @@ class PaymentPage extends StatefulWidget {
 
 class _PaymentPageState extends State<PaymentPage> {
   String _selectedMethod = 'transfer';
+  DateTime? _selectedDate;
 
   final _referenceController = TextEditingController();
   final _amountController = TextEditingController();
@@ -145,7 +146,7 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
             const SizedBox(height: AppDimensions.paddingSmall),
 
-            // Payment method pill chips
+            // Payment method pill chips with shadow on selected
             Wrap(
               spacing: AppDimensions.paddingSmall,
               runSpacing: AppDimensions.paddingSmall,
@@ -166,6 +167,16 @@ class _PaymentPageState extends State<PaymentPage> {
                           : AppColors.inputBackground,
                       borderRadius:
                           BorderRadius.circular(AppDimensions.radiusPill),
+                      boxShadow: isSelected
+                          ? [
+                              BoxShadow(
+                                color: AppColors.primary
+                                    .withValues(alpha: 0.3),
+                                blurRadius: 10,
+                                offset: const Offset(0, 3),
+                              ),
+                            ]
+                          : null,
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
@@ -208,6 +219,56 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
             const SizedBox(height: AppDimensions.paddingMedium),
 
+            // Date field
+            GestureDetector(
+              onTap: () async {
+                final picked = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now().subtract(const Duration(days: 90)),
+                  lastDate: DateTime.now(),
+                );
+                if (picked != null) {
+                  setState(() {
+                    _selectedDate = picked;
+                  });
+                }
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: AppDimensions.paddingLarge,
+                  vertical: AppDimensions.paddingMedium,
+                ),
+                decoration: BoxDecoration(
+                  color: AppColors.inputBackground,
+                  borderRadius: BorderRadius.circular(AppDimensions.radiusLarge),
+                ),
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.calendar_today_outlined,
+                      size: AppDimensions.iconSmall,
+                      color: AppColors.textTertiary,
+                    ),
+                    const SizedBox(width: 12),
+                    Text(
+                      _selectedDate != null
+                          ? '${_selectedDate!.day.toString().padLeft(2, '0')}/${_selectedDate!.month.toString().padLeft(2, '0')}/${_selectedDate!.year}'
+                          : 'Fecha del pago',
+                      style: TextStyle(
+                        fontSize: AppDimensions.fontBody,
+                        color: _selectedDate != null
+                            ? AppColors.textPrimary
+                            : AppColors.textTertiary,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: AppDimensions.paddingMedium),
+
             // Amount field
             AppTextField(
               label: l10n.amountLabel,
@@ -221,18 +282,18 @@ class _PaymentPageState extends State<PaymentPage> {
             ),
             const SizedBox(height: AppDimensions.paddingLarge),
 
-            // Upload area with dashed border
+            // Upload area with organic dashed border
             GestureDetector(
               onTap: () {
                 // TODO: implement image picker
               },
               child: CustomPaint(
                 painter: _DashedBorderPainter(
-                  color: AppColors.textTertiary,
-                  radius: AppDimensions.radiusLarge,
+                  color: AppColors.textTertiary.withValues(alpha: 0.5),
+                  radius: AppDimensions.radiusXL,
                   strokeWidth: 1.5,
-                  dashWidth: 8,
-                  dashSpace: 5,
+                  dashWidth: 10,
+                  dashSpace: 6,
                 ),
                 child: Container(
                   width: double.infinity,
@@ -240,7 +301,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   decoration: BoxDecoration(
                     color: AppColors.inputBackground,
                     borderRadius:
-                        BorderRadius.circular(AppDimensions.radiusLarge),
+                        BorderRadius.circular(AppDimensions.radiusXL),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -248,8 +309,15 @@ class _PaymentPageState extends State<PaymentPage> {
                       Container(
                         width: 48,
                         height: 48,
-                        decoration: const BoxDecoration(
-                          color: AppColors.primarySurface,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                            colors: [
+                              AppColors.primarySurface,
+                              AppColors.primarySurface.withValues(alpha: 0.6),
+                            ],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
                           shape: BoxShape.circle,
                         ),
                         child: const Icon(
@@ -287,7 +355,7 @@ class _PaymentPageState extends State<PaymentPage> {
   }
 }
 
-/// Custom painter for dashed border
+/// Custom painter for dashed border - organic rounded
 class _DashedBorderPainter extends CustomPainter {
   final Color color;
   final double radius;
@@ -308,7 +376,8 @@ class _DashedBorderPainter extends CustomPainter {
     final paint = Paint()
       ..color = color
       ..strokeWidth = strokeWidth
-      ..style = PaintingStyle.stroke;
+      ..style = PaintingStyle.stroke
+      ..strokeCap = StrokeCap.round;
 
     final rrect = RRect.fromRectAndRadius(
       Rect.fromLTWH(0, 0, size.width, size.height),

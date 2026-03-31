@@ -100,32 +100,44 @@ abstract class L10n {
   /// No description provided for @appName.
   ///
   /// In es, this message translates to:
-  /// **'SIGRA'**
+  /// **'Reside'**
   String get appName;
 
   /// No description provided for @appSubtitle.
   ///
   /// In es, this message translates to:
-  /// **'Residencias La Molienda'**
+  /// **'Tu comunidad, conectada'**
   String get appSubtitle;
 
   /// No description provided for @appTitle.
   ///
   /// In es, this message translates to:
-  /// **'SIGRA - La Molienda'**
+  /// **'Reside'**
   String get appTitle;
 
-  /// No description provided for @apartmentLabel.
+  /// No description provided for @emailOrPhoneLabel.
   ///
   /// In es, this message translates to:
-  /// **'Apartamento'**
-  String get apartmentLabel;
+  /// **'Correo electrónico o teléfono'**
+  String get emailOrPhoneLabel;
 
   /// No description provided for @passwordLabel.
   ///
   /// In es, this message translates to:
   /// **'Contraseña'**
   String get passwordLabel;
+
+  /// No description provided for @rememberMe.
+  ///
+  /// In es, this message translates to:
+  /// **'Recordarme'**
+  String get rememberMe;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Olvidaste tu contraseña?'**
+  String get forgotPassword;
 
   /// No description provided for @loginButton.
   ///
@@ -148,14 +160,62 @@ abstract class L10n {
   /// No description provided for @registerTitle.
   ///
   /// In es, this message translates to:
-  /// **'Registro SIGRA'**
+  /// **'Registro'**
   String get registerTitle;
 
   /// No description provided for @registerSubtitle.
   ///
   /// In es, this message translates to:
-  /// **'Crea tu cuenta de residente'**
+  /// **'Activa tu cuenta'**
   String get registerSubtitle;
+
+  /// No description provided for @registerDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Complete sus datos para registrarse'**
+  String get registerDescription;
+
+  /// No description provided for @invitationCodeLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de invitación'**
+  String get invitationCodeLabel;
+
+  /// No description provided for @invitationCodeHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Ej: RES-4B-2026'**
+  String get invitationCodeHint;
+
+  /// No description provided for @emailLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Correo electrónico'**
+  String get emailLabel;
+
+  /// No description provided for @phoneLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Número de teléfono'**
+  String get phoneLabel;
+
+  /// No description provided for @confirmPasswordLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar contraseña'**
+  String get confirmPasswordLabel;
+
+  /// No description provided for @registerButton.
+  ///
+  /// In es, this message translates to:
+  /// **'CREAR CUENTA'**
+  String get registerButton;
+
+  /// No description provided for @apartmentLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Apartamento'**
+  String get apartmentLabel;
 
   /// No description provided for @fullNameLabel.
   ///
@@ -175,24 +235,6 @@ abstract class L10n {
   /// **'Torre / Apartamento'**
   String get towerApartmentLabel;
 
-  /// No description provided for @emailLabel.
-  ///
-  /// In es, this message translates to:
-  /// **'Correo Electrónico'**
-  String get emailLabel;
-
-  /// No description provided for @registerButton.
-  ///
-  /// In es, this message translates to:
-  /// **'REGISTRARME'**
-  String get registerButton;
-
-  /// No description provided for @registerDescription.
-  ///
-  /// In es, this message translates to:
-  /// **'Complete sus datos para registrarse'**
-  String get registerDescription;
-
   /// No description provided for @welcomeMessage.
   ///
   /// In es, this message translates to:
@@ -202,13 +244,13 @@ abstract class L10n {
   /// No description provided for @homeAdminTitle.
   ///
   /// In es, this message translates to:
-  /// **'SIGRA - Gestión Admin'**
+  /// **'Reside - Gestión Admin'**
   String get homeAdminTitle;
 
   /// No description provided for @homeResidentTitle.
   ///
   /// In es, this message translates to:
-  /// **'SIGRA - Mi tablero'**
+  /// **'Reside - Mi tablero'**
   String get homeResidentTitle;
 
   /// No description provided for @adminSectionTitle.
@@ -304,7 +346,7 @@ abstract class L10n {
   /// No description provided for @adminCajaLabel.
   ///
   /// In es, this message translates to:
-  /// **'Caja de Residencia La Molienda'**
+  /// **'Fondo de la Residencia'**
   String get adminCajaLabel;
 
   /// No description provided for @residentAccountStatus.
@@ -520,7 +562,7 @@ abstract class L10n {
   /// No description provided for @reservationsTitle.
   ///
   /// In es, this message translates to:
-  /// **'Reservas La Molienda'**
+  /// **'Reservas'**
   String get reservationsTitle;
 
   /// No description provided for @statusAvailable.
@@ -568,7 +610,7 @@ abstract class L10n {
   /// No description provided for @announcementsTitle.
   ///
   /// In es, this message translates to:
-  /// **'Anuncios La Molienda'**
+  /// **'Anuncios'**
   String get announcementsTitle;
 
   /// No description provided for @urgentLabel.
@@ -586,7 +628,7 @@ abstract class L10n {
   /// No description provided for @rulesTitle.
   ///
   /// In es, this message translates to:
-  /// **'Normativa La Molienda'**
+  /// **'Normativa'**
   String get rulesTitle;
 
   /// No description provided for @rulesBanner.
@@ -652,13 +694,13 @@ abstract class L10n {
   /// No description provided for @chatbotTitle.
   ///
   /// In es, this message translates to:
-  /// **'Asistente Virtual SIGRA'**
+  /// **'Asistente Virtual Reside'**
   String get chatbotTitle;
 
   /// No description provided for @chatbotGreeting.
   ///
   /// In es, this message translates to:
-  /// **'¡Hola! Soy SIGRA-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?'**
+  /// **'¡Hola! Soy Reside-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?'**
   String get chatbotGreeting;
 
   /// No description provided for @chatbotPaymentMethods.
@@ -718,13 +760,13 @@ abstract class L10n {
   /// No description provided for @chatbotRulesQuery.
   ///
   /// In es, this message translates to:
-  /// **'El reglamento de La Molienda prohibe ruidos molestos después de las 8:00 PM. Las mascotas deben usar correa siempre. ¿Quieres consultar algún artículo específico?'**
+  /// **'El reglamento prohibe ruidos molestos después de las 8:00 PM. Las mascotas deben usar correa siempre. ¿Quieres consultar algún artículo específico?'**
   String get chatbotRulesQuery;
 
   /// No description provided for @chatbotIntro.
   ///
   /// In es, this message translates to:
-  /// **'¡Hola! Soy SIGRA-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?'**
+  /// **'¡Hola! Soy Reside-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?'**
   String get chatbotIntro;
 
   /// No description provided for @chatbotCourtesy.
@@ -1516,7 +1558,7 @@ abstract class L10n {
   /// No description provided for @reportsAdminTitle.
   ///
   /// In es, this message translates to:
-  /// **'Panel de Reportes SIGRA'**
+  /// **'Panel de Reportes Reside'**
   String get reportsAdminTitle;
 
   /// No description provided for @reportsResidentTitle.
@@ -1528,7 +1570,7 @@ abstract class L10n {
   /// No description provided for @reportsAdminHeading.
   ///
   /// In es, this message translates to:
-  /// **'Resumen de Gestión La Molienda'**
+  /// **'Resumen de Gestión'**
   String get reportsAdminHeading;
 
   /// No description provided for @reportsResidentHeading.

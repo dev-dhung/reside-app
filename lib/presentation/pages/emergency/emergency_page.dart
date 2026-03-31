@@ -38,7 +38,7 @@ class EmergencyPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Warning banner
+            // Warning banner - organic rounded card
             _buildBanner(l10n),
             const SizedBox(height: AppDimensions.paddingXL),
 
@@ -81,31 +81,69 @@ class EmergencyPage extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.all(AppDimensions.paddingLarge),
       decoration: BoxDecoration(
-        color: AppColors.error.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
-      ),
-      child: Row(
-        children: [
-          Container(
-            width: 48,
-            height: 48,
-            decoration: BoxDecoration(
-              color: AppColors.error.withValues(alpha: 0.12),
-              shape: BoxShape.circle,
-            ),
-            child: const Icon(Icons.warning_amber_rounded,
-                size: AppDimensions.iconLarge, color: AppColors.error),
+        gradient: LinearGradient(
+          colors: [
+            AppColors.error.withValues(alpha: 0.10),
+            AppColors.error.withValues(alpha: 0.04),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(AppDimensions.radiusXXL),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.error.withValues(alpha: 0.08),
+            blurRadius: 16,
+            offset: const Offset(0, 4),
           ),
-          const SizedBox(width: AppDimensions.paddingMedium),
-          Expanded(
-            child: Text(
-              l10n.emergencyBanner,
-              style: TextStyle(
-                fontSize: AppDimensions.fontBody,
-                fontWeight: FontWeight.w600,
-                color: AppColors.error.withValues(alpha: 0.9),
+        ],
+      ),
+      child: Stack(
+        children: [
+          // Subtle decorative circle
+          Positioned(
+            top: -20,
+            right: -20,
+            child: Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.error.withValues(alpha: 0.06),
               ),
             ),
+          ),
+          Row(
+            children: [
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.error.withValues(alpha: 0.18),
+                      AppColors.error.withValues(alpha: 0.10),
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(Icons.warning_amber_rounded,
+                    size: AppDimensions.iconLarge, color: AppColors.error),
+              ),
+              const SizedBox(width: AppDimensions.paddingMedium),
+              Expanded(
+                child: Text(
+                  l10n.emergencyBanner,
+                  style: TextStyle(
+                    fontSize: AppDimensions.fontBody,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.error.withValues(alpha: 0.9),
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -116,20 +154,35 @@ class EmergencyPage extends StatelessWidget {
     return Row(
       children: [
         Container(
-          width: 4,
-          height: 20,
+          width: 10,
+          height: 10,
           decoration: BoxDecoration(
             color: color,
-            borderRadius: BorderRadius.circular(2),
+            shape: BoxShape.circle,
           ),
         ),
-        const SizedBox(width: AppDimensions.paddingSmall + 4),
+        const SizedBox(width: AppDimensions.paddingSmall),
         Text(
           title,
           style: TextStyle(
             fontSize: AppDimensions.fontLarge,
             fontWeight: FontWeight.w700,
             color: color,
+          ),
+        ),
+        const SizedBox(width: AppDimensions.paddingSmall),
+        Expanded(
+          child: Container(
+            height: 1.5,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  color.withValues(alpha: 0.4),
+                  color.withValues(alpha: 0.0),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(1),
+            ),
           ),
         ),
       ],
@@ -150,6 +203,8 @@ class EmergencyPage extends StatelessWidget {
         child: InkWell(
           borderRadius:
               BorderRadius.circular(AppDimensions.radiusXL),
+          splashColor: accentColor.withValues(alpha: 0.08),
+          highlightColor: accentColor.withValues(alpha: 0.04),
           onTap: () {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
@@ -162,12 +217,19 @@ class EmergencyPage extends StatelessWidget {
           child: AppCard(
             child: Row(
               children: [
-                // Icon in colored circle
+                // Icon in gradient circle
                 Container(
                   width: isBig ? 52 : 44,
                   height: isBig ? 52 : 44,
                   decoration: BoxDecoration(
-                    color: accentColor.withValues(alpha: 0.1),
+                    gradient: LinearGradient(
+                      colors: [
+                        accentColor.withValues(alpha: 0.15),
+                        accentColor.withValues(alpha: 0.06),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -225,7 +287,14 @@ class EmergencyPage extends StatelessWidget {
                   width: 36,
                   height: 36,
                   decoration: BoxDecoration(
-                    color: accentColor.withValues(alpha: 0.08),
+                    gradient: LinearGradient(
+                      colors: [
+                        accentColor.withValues(alpha: 0.12),
+                        accentColor.withValues(alpha: 0.04),
+                      ],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
                     shape: BoxShape.circle,
                   ),
                   child: Icon(Icons.call,

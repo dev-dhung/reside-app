@@ -44,23 +44,40 @@ class AnnouncementsPage extends StatelessWidget {
                 ],
               ),
             )
-          : ListView.builder(
-              padding: const EdgeInsets.all(AppDimensions.paddingMedium),
-              itemCount: announcements.length,
-              itemBuilder: (context, index) {
-                final a = announcements[index];
-                return Padding(
-                  padding: const EdgeInsets.only(
-                      bottom: AppDimensions.paddingSmall),
-                  child: AnnouncementCard(
-                    title: a.title,
-                    content: a.content,
-                    date:
-                        '${a.date.day.toString().padLeft(2, '0')}/${a.date.month.toString().padLeft(2, '0')}/${a.date.year}',
-                    isUrgent: a.priority == AnnouncementPriority.urgent,
+          : Stack(
+              children: [
+                // Decorative circle in top-right
+                Positioned(
+                  top: -30,
+                  right: -30,
+                  child: Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.accent.withValues(alpha: 0.05),
+                    ),
                   ),
-                );
-              },
+                ),
+                ListView.builder(
+                  padding: const EdgeInsets.all(AppDimensions.paddingMedium),
+                  itemCount: announcements.length,
+                  itemBuilder: (context, index) {
+                    final a = announcements[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          bottom: AppDimensions.paddingSmall + 4),
+                      child: AnnouncementCard(
+                        title: a.title,
+                        content: a.content,
+                        date:
+                            '${a.date.day.toString().padLeft(2, '0')}/${a.date.month.toString().padLeft(2, '0')}/${a.date.year}',
+                        isUrgent: a.priority == AnnouncementPriority.urgent,
+                      ),
+                    );
+                  },
+                ),
+              ],
             ),
     );
   }

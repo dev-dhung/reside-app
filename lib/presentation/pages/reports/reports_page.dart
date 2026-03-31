@@ -78,9 +78,17 @@ class ReportsPage extends StatelessWidget {
   }
 
   Widget _buildSectionHeader(String text) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
+        Container(
+          width: 10,
+          height: 10,
+          decoration: const BoxDecoration(
+            color: AppColors.primary,
+            shape: BoxShape.circle,
+          ),
+        ),
+        const SizedBox(width: AppDimensions.paddingSmall),
         Text(
           text,
           style: const TextStyle(
@@ -89,13 +97,19 @@ class ReportsPage extends StatelessWidget {
             color: AppColors.textPrimary,
           ),
         ),
-        const SizedBox(height: AppDimensions.paddingSmall),
-        Container(
-          width: 40,
-          height: 3,
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(2),
+        const SizedBox(width: AppDimensions.paddingSmall),
+        Expanded(
+          child: Container(
+            height: 1.5,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppColors.primary.withValues(alpha: 0.3),
+                  AppColors.primary.withValues(alpha: 0.0),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(1),
+            ),
           ),
         ),
       ],
@@ -178,7 +192,7 @@ class ReportsPage extends StatelessWidget {
     );
   }
 
-  // Monthly chart - clean bar rows
+  // Monthly chart - clean bar rows, thicker and more rounded
   Widget _buildMonthlyPaymentsCard(L10n l10n) {
     double maxTotal = 0;
     for (final p in mockMonthlyPayments) {
@@ -233,22 +247,32 @@ class ReportsPage extends StatelessWidget {
                           child: Row(
                             children: [
                               Container(
-                                height: 10,
+                                height: 12,
                                 width: collectedWidth,
-                                decoration: const BoxDecoration(
-                                  color: AppColors.success,
-                                  borderRadius: BorderRadius.horizontal(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppColors.success,
+                                      AppColors.success.withValues(alpha: 0.7),
+                                    ],
+                                  ),
+                                  borderRadius: const BorderRadius.horizontal(
                                     left: Radius.circular(
                                         AppDimensions.radiusPill),
                                   ),
                                 ),
                               ),
                               Container(
-                                height: 10,
+                                height: 12,
                                 width: pendingWidth,
-                                decoration: const BoxDecoration(
-                                  color: AppColors.error,
-                                  borderRadius: BorderRadius.horizontal(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      AppColors.error,
+                                      AppColors.error.withValues(alpha: 0.7),
+                                    ],
+                                  ),
+                                  borderRadius: const BorderRadius.horizontal(
                                     right: Radius.circular(
                                         AppDimensions.radiusPill),
                                   ),
@@ -308,7 +332,7 @@ class ReportsPage extends StatelessWidget {
     const topicColors = <String, Color>{
       'Pagos': AppColors.primary,
       'Servicios': AppColors.info,
-      'Averías': Color(0xFFFFA000),
+      'Averias': Color(0xFFFFA000),
     };
 
     return AppCard(

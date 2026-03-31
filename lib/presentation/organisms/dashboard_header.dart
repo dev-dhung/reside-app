@@ -31,41 +31,59 @@ class DashboardHeader extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(AppDimensions.radiusXXL),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: AppColors.shadow,
-            blurRadius: 20,
-            offset: Offset(0, 4),
+            color: AppColors.accent.withValues(alpha: 0.2),
+            blurRadius: 24,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Text(
-            l10n.adminRecaudation,
-            style: TextStyle(
-              fontSize: 13,
-              color: AppColors.textOnAccent.withValues(alpha: 0.7),
-              fontWeight: FontWeight.w500,
+          // Decorative circle
+          Positioned(
+            top: -20,
+            right: -10,
+            child: Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white.withValues(alpha: 0.08),
+              ),
             ),
           ),
-          const SizedBox(height: AppDimensions.paddingSmall),
-          Text(
-            adminTotal,
-            style: const TextStyle(
-              fontSize: AppDimensions.fontHero,
-              fontWeight: FontWeight.w700,
-              color: AppColors.textOnAccent,
-            ),
-          ),
-          const SizedBox(height: AppDimensions.paddingSmall),
-          Text(
-            l10n.adminCajaLabel,
-            style: TextStyle(
-              fontSize: 13,
-              color: AppColors.textOnAccent.withValues(alpha: 0.6),
-            ),
+          // Content
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.adminRecaudation,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: AppColors.textOnAccent.withValues(alpha: 0.7),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: AppDimensions.paddingSmall),
+              Text(
+                adminTotal,
+                style: const TextStyle(
+                  fontSize: AppDimensions.fontHero,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textOnAccent,
+                ),
+              ),
+              const SizedBox(height: AppDimensions.paddingSmall),
+              Text(
+                l10n.adminCajaLabel,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: AppColors.textOnAccent.withValues(alpha: 0.6),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -83,41 +101,59 @@ class DashboardHeader extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(AppDimensions.radiusXXL),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: AppColors.shadow,
-            blurRadius: 20,
-            offset: Offset(0, 4),
+            color: AppColors.primary.withValues(alpha: 0.2),
+            blurRadius: 24,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: [
-          Text(
-            l10n.residentAccountStatus,
-            style: TextStyle(
-              fontSize: 13,
-              color: AppColors.textOnPrimary.withValues(alpha: 0.7),
-              fontWeight: FontWeight.w500,
+          // Decorative circle
+          Positioned(
+            top: -20,
+            right: -10,
+            child: Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white.withValues(alpha: 0.08),
+              ),
             ),
           ),
-          const SizedBox(height: AppDimensions.paddingSmall),
-          Text(
-            balance,
-            style: const TextStyle(
-              fontSize: AppDimensions.fontHero,
-              fontWeight: FontWeight.w700,
-              color: AppColors.textOnPrimary,
-            ),
-          ),
-          const SizedBox(height: AppDimensions.paddingSmall),
-          Text(
-            l10n.residentPendingLabel,
-            style: TextStyle(
-              fontSize: 13,
-              color: AppColors.textOnPrimary.withValues(alpha: 0.6),
-            ),
+          // Content
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                l10n.residentAccountStatus,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: AppColors.textOnPrimary.withValues(alpha: 0.7),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(height: AppDimensions.paddingSmall),
+              Text(
+                balance,
+                style: const TextStyle(
+                  fontSize: AppDimensions.fontHero,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textOnPrimary,
+                ),
+              ),
+              const SizedBox(height: AppDimensions.paddingSmall),
+              Text(
+                l10n.residentPendingLabel,
+                style: TextStyle(
+                  fontSize: 13,
+                  color: AppColors.textOnPrimary.withValues(alpha: 0.6),
+                ),
+              ),
+            ],
           ),
         ],
       ),

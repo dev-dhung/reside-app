@@ -59,17 +59,22 @@ class SigraAppState extends State<SigraApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Reside',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: settings.themeMode,
-      localizationsDelegates: L10n.localizationsDelegates,
-      supportedLocales: L10n.supportedLocales,
-      locale: settings.locale,
-      initialRoute: AppRoutes.login,
-      onGenerateRoute: _onGenerateRoute,
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 430),
+        child: MaterialApp(
+          title: 'Reside',
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme.lightTheme,
+          darkTheme: AppTheme.darkTheme,
+          themeMode: settings.themeMode,
+          localizationsDelegates: L10n.localizationsDelegates,
+          supportedLocales: L10n.supportedLocales,
+          locale: settings.locale,
+          initialRoute: AppRoutes.login,
+          onGenerateRoute: _onGenerateRoute,
+        ),
+      ),
     );
   }
 

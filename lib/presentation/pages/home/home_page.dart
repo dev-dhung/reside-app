@@ -136,28 +136,6 @@ class HomePage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(width: AppDimensions.paddingSmall),
-                    GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(context, AppRoutes.profile),
-                      child: Container(
-                        width: AppDimensions.avatarMedium,
-                        height: AppDimensions.avatarMedium,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withValues(alpha: 0.2),
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.white.withValues(alpha: 0.4),
-                            width: 2,
-                          ),
-                        ),
-                        child: const Icon(
-                          Icons.person_rounded,
-                          color: Colors.white,
-                          size: AppDimensions.iconMedium,
-                        ),
-                      ),
-                    ),
                   ],
                 ),
               ),

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prototype/core/constants/app_colors.dart';
 
-/// Reusable curved wave header with gradient background and decorative circles.
-///
-/// Used across login, register, and profile pages for a consistent
-/// organic groovy-wave visual identity.
 class WaveHeader extends StatelessWidget {
   const WaveHeader({
     super.key,
@@ -13,22 +9,19 @@ class WaveHeader extends StatelessWidget {
     this.gradientColors,
   });
 
-  /// Total height of the header section.
   final double height;
-
-  /// Content rendered on top of the gradient wave (icons, titles, etc.).
   final Widget child;
-
-  /// Optional gradient override; defaults to [AppColors.gradientPrimary].
   final List<Color>? gradientColors;
 
   @override
   Widget build(BuildContext context) {
+    final topPadding = MediaQuery.of(context).padding.top;
+
     return SizedBox(
       height: height,
       child: Stack(
+        clipBehavior: Clip.none,
         children: [
-          // Background curve
           ClipPath(
             clipper: const WaveClipper(),
             child: Container(
@@ -42,7 +35,6 @@ class WaveHeader extends StatelessWidget {
               ),
             ),
           ),
-          // Decorative circles (subtle)
           Positioned(
             top: -30,
             right: -40,
@@ -67,15 +59,16 @@ class WaveHeader extends StatelessWidget {
               ),
             ),
           ),
-          // Content
-          SafeArea(child: child),
+          Positioned.fill(
+            top: topPadding,
+            child: child,
+          ),
         ],
       ),
     );
   }
 }
 
-/// Custom clipper that creates a smooth organic wave at the bottom edge.
 class WaveClipper extends CustomClipper<Path> {
   const WaveClipper();
 

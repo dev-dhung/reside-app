@@ -91,7 +91,7 @@ class ReportsPage extends StatelessWidget {
         const SizedBox(width: AppDimensions.paddingSmall),
         Text(
           text,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: AppDimensions.fontLarge,
             fontWeight: FontWeight.w700,
             color: AppColors.textPrimary,
@@ -225,7 +225,7 @@ class ReportsPage extends StatelessWidget {
                     width: 36,
                     child: Text(
                       p.month,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontSmall,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
@@ -290,7 +290,7 @@ class ReportsPage extends StatelessWidget {
                     child: Text(
                       '\$${(p.collected + p.pending).toStringAsFixed(0)}',
                       textAlign: TextAlign.end,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontSmall,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
@@ -318,7 +318,7 @@ class ReportsPage extends StatelessWidget {
         const SizedBox(width: 6),
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: AppDimensions.fontSmall,
             color: AppColors.textSecondary,
           ),
@@ -376,7 +376,7 @@ class ReportsPage extends StatelessWidget {
                     Container(
                       width: 40,
                       height: 40,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: AppColors.primarySurface,
                         shape: BoxShape.circle,
                       ),
@@ -393,7 +393,7 @@ class ReportsPage extends StatelessWidget {
                         children: [
                           Text(
                             '${log.apartment} - ${log.topic}',
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: AppDimensions.fontBody,
                               fontWeight: FontWeight.w600,
                               color: AppColors.textPrimary,
@@ -402,7 +402,7 @@ class ReportsPage extends StatelessWidget {
                           const SizedBox(height: 2),
                           Text(
                             _formatDate(log.date),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: AppDimensions.fontSmall,
                               color: AppColors.textSecondary,
                             ),

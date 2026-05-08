@@ -149,7 +149,7 @@ class _ContactSupportPageState extends State<ContactSupportPage> {
                     const SizedBox(height: AppDimensions.paddingXL),
 
                     // -- Category dropdown --
-                    const Text(
+                    Text(
                       'Categoría',
                       style: TextStyle(
                         fontSize: AppDimensions.fontBody,
@@ -175,7 +175,7 @@ class _ContactSupportPageState extends State<ContactSupportPage> {
                     const SizedBox(height: AppDimensions.paddingMedium),
 
                     // -- Subject --
-                    const Text(
+                    Text(
                       'Asunto',
                       style: TextStyle(
                         fontSize: AppDimensions.fontBody,
@@ -198,7 +198,7 @@ class _ContactSupportPageState extends State<ContactSupportPage> {
                     const SizedBox(height: AppDimensions.paddingMedium),
 
                     // -- Message --
-                    const Text(
+                    Text(
                       'Mensaje',
                       style: TextStyle(
                         fontSize: AppDimensions.fontBody,
@@ -258,7 +258,7 @@ class _ContactSupportPageState extends State<ContactSupportPage> {
                       ),
                       child: Column(
                         children: [
-                          const Text(
+                          Text(
                             'También puedes contactarnos:',
                             style: TextStyle(
                               fontSize: AppDimensions.fontBody,
@@ -297,7 +297,7 @@ class _ContactSupportPageState extends State<ContactSupportPage> {
   }) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: const TextStyle(color: AppColors.textTertiary),
+      hintStyle: TextStyle(color: AppColors.textTertiary),
       prefixIcon: prefixIcon != null
           ? Icon(prefixIcon, color: AppColors.textTertiary, size: 20)
           : null,
@@ -348,7 +348,7 @@ class _ContactRow extends StatelessWidget {
         const SizedBox(width: 12),
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: AppDimensions.fontBody,
             color: AppColors.textSecondary,
           ),

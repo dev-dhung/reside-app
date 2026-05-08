@@ -259,7 +259,7 @@ class EmergencyPage extends StatelessWidget {
                       const SizedBox(height: AppDimensions.paddingXS),
                       Text(
                         contact.phone,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: AppDimensions.fontBody,
                           color: AppColors.textSecondary,
                         ),
@@ -275,7 +275,7 @@ class EmergencyPage extends StatelessWidget {
                     : Flexible(
                         child: Text(
                           contact.schedule ?? '',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: AppDimensions.fontSmall,
                             color: AppColors.textSecondary,
                           ),

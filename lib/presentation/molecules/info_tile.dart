@@ -36,7 +36,7 @@ class InfoTile extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 13,
                 fontStyle: FontStyle.italic,
                 color: AppColors.textSecondary,

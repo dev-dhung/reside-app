@@ -6,6 +6,8 @@ void showNotificationsSheet(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
+    isDismissible: true,
+    enableDrag: true,
     backgroundColor: Colors.transparent,
     builder: (ctx) => const _NotificationsSheet(),
   );
@@ -16,133 +18,143 @@ class _NotificationsSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      initialChildSize: 0.65,
-      maxChildSize: 0.85,
-      minChildSize: 0.4,
-      builder: (context, scrollController) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: AppColors.cardBackground,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-          ),
-          child: Column(
-            children: [
-              const SizedBox(height: 12),
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: AppColors.divider,
-                  borderRadius: BorderRadius.circular(2),
-                ),
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => Navigator.of(context).pop(),
+      child: DraggableScrollableSheet(
+        initialChildSize: 0.65,
+        maxChildSize: 0.85,
+        minChildSize: 0.4,
+        builder: (context, scrollController) {
+          return GestureDetector(
+            onTap: () {},
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.cardBackground,
+                borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
-                child: Row(
-                  children: [
-                    Container(
-                      width: 36,
-                      height: 36,
-                      decoration: BoxDecoration(
-                        color: AppColors.primarySurface,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: const Icon(
-                        Icons.notifications_outlined,
-                        color: AppColors.primary,
-                        size: 20,
-                      ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 12),
+                  Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: AppColors.divider,
+                      borderRadius: BorderRadius.circular(2),
                     ),
-                    const SizedBox(width: 12),
-                    const Text(
-                      'Notificaciones',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w700,
-                        color: AppColors.textPrimary,
-                      ),
-                    ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content:
-                                const Text('Notificaciones marcadas como leídas'),
-                            behavior: SnackBarBehavior.floating,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 16, 20, 8),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 36,
+                          height: 36,
+                          decoration: BoxDecoration(
+                            color: AppColors.primarySurface,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Icon(
+                            Icons.notifications_outlined,
+                            color: AppColors.primary,
+                            size: 20,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          'Notificaciones',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textPrimary,
+                          ),
+                        ),
+                        const Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.pop(context);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: const Text(
+                                    'Notificaciones marcadas como leídas'),
+                                behavior: SnackBarBehavior.floating,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Marcar leídas',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.primary,
                             ),
                           ),
-                        );
-                      },
-                      child: const Text(
-                        'Marcar leídas',
-                        style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.primary,
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Divider(color: AppColors.divider),
+                  Expanded(
+                    child: ListView(
+                      controller: scrollController,
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      children: const [
+                        _NotifItem(
+                          icon: Icons.campaign_rounded,
+                          iconColor: AppColors.error,
+                          title: 'Corte de agua programado',
+                          body:
+                              'Mañana 6:00 AM - 2:00 PM. Se recomienda almacenar agua.',
+                          time: 'Hace 30 min',
+                          isUnread: true,
+                        ),
+                        _NotifItem(
+                          icon: Icons.check_circle_rounded,
+                          iconColor: AppColors.success,
+                          title: 'Pago aprobado',
+                          body:
+                              'Tu pago de \$150.00 ha sido verificado por la administración.',
+                          time: 'Hace 2 horas',
+                          isUnread: true,
+                        ),
+                        _NotifItem(
+                          icon: Icons.event_available_rounded,
+                          iconColor: AppColors.info,
+                          title: 'Reserva confirmada',
+                          body: 'Parrillera Central - 05 de Abril, 2:00 PM.',
+                          time: 'Ayer',
+                          isUnread: false,
+                        ),
+                        _NotifItem(
+                          icon: Icons.build_rounded,
+                          iconColor: AppColors.warning,
+                          title: 'Solicitud actualizada',
+                          body: 'Tu reporte de fuga en cocina está en progreso.',
+                          time: 'Hace 2 días',
+                          isUnread: false,
+                        ),
+                        _NotifItem(
+                          icon: Icons.how_to_vote_rounded,
+                          iconColor: AppColors.primary,
+                          title: 'Nueva votación disponible',
+                          body:
+                              'Instalación de cámaras en estacionamiento. ¡Tu voto cuenta!',
+                          time: 'Hace 3 días',
+                          isUnread: false,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              const Divider(color: AppColors.divider),
-              Expanded(
-                child: ListView(
-                  controller: scrollController,
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  children: const [
-                    _NotifItem(
-                      icon: Icons.campaign_rounded,
-                      iconColor: AppColors.error,
-                      title: 'Corte de agua programado',
-                      body: 'Mañana 6:00 AM - 2:00 PM. Se recomienda almacenar agua.',
-                      time: 'Hace 30 min',
-                      isUnread: true,
-                    ),
-                    _NotifItem(
-                      icon: Icons.check_circle_rounded,
-                      iconColor: AppColors.success,
-                      title: 'Pago aprobado',
-                      body: 'Tu pago de \$150.00 ha sido verificado por la administración.',
-                      time: 'Hace 2 horas',
-                      isUnread: true,
-                    ),
-                    _NotifItem(
-                      icon: Icons.event_available_rounded,
-                      iconColor: AppColors.info,
-                      title: 'Reserva confirmada',
-                      body: 'Parrillera Central - 05 de Abril, 2:00 PM.',
-                      time: 'Ayer',
-                      isUnread: false,
-                    ),
-                    _NotifItem(
-                      icon: Icons.build_rounded,
-                      iconColor: AppColors.warning,
-                      title: 'Solicitud actualizada',
-                      body: 'Tu reporte de fuga en cocina está en progreso.',
-                      time: 'Hace 2 días',
-                      isUnread: false,
-                    ),
-                    _NotifItem(
-                      icon: Icons.how_to_vote_rounded,
-                      iconColor: AppColors.primary,
-                      title: 'Nueva votación disponible',
-                      body: 'Instalación de cámaras en estacionamiento. ¡Tu voto cuenta!',
-                      time: 'Hace 3 días',
-                      isUnread: false,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -199,7 +211,8 @@ class _NotifItem extends StatelessWidget {
                         title,
                         style: TextStyle(
                           fontSize: 14,
-                          fontWeight: isUnread ? FontWeight.w700 : FontWeight.w600,
+                          fontWeight:
+                              isUnread ? FontWeight.w700 : FontWeight.w600,
                           color: AppColors.textPrimary,
                         ),
                       ),
@@ -218,7 +231,7 @@ class _NotifItem extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   body,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
                     color: AppColors.textSecondary,
                     height: 1.3,
@@ -227,7 +240,7 @@ class _NotifItem extends StatelessWidget {
                 const SizedBox(height: 6),
                 Text(
                   time,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 11,
                     color: AppColors.textTertiary,
                   ),

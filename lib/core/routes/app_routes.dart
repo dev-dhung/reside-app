@@ -22,4 +22,5 @@ class AppRoutes {
   static const String changePassword = '/change-password';
   static const String terms = '/terms';
   static const String privacy = '/privacy';
+  static const String metrics = '/metrics';
 }

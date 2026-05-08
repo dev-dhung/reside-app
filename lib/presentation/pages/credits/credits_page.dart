@@ -140,7 +140,7 @@ class CreditsPage extends StatelessWidget {
                   // Tutor section title
                   Text(
                     l10n.tutorSection,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontXL,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
@@ -188,7 +188,7 @@ class CreditsPage extends StatelessWidget {
                             children: [
                               Text(
                                 mockTutor['name'] ?? '',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: AppDimensions.fontLarge,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.textPrimary,
@@ -197,21 +197,21 @@ class CreditsPage extends StatelessWidget {
                               const SizedBox(height: AppDimensions.paddingXS),
                               Text(
                                 mockTutor['role'] ?? '',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: AppDimensions.fontBody,
                                   color: AppColors.textSecondary,
                                 ),
                               ),
                               Text(
                                 mockTutor['titulo'] ?? '',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: AppDimensions.fontBody,
                                   color: AppColors.textSecondary,
                                 ),
                               ),
                               Text(
                                 mockTutor['phone'] ?? '',
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: AppDimensions.fontBody,
                                   color: AppColors.textSecondary,
                                 ),
@@ -228,7 +228,7 @@ class CreditsPage extends StatelessWidget {
                   Center(
                     child: Text(
                       l10n.copyrightNotice,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppColors.textTertiary,
                         fontSize: AppDimensions.fontSmall,
                       ),
@@ -336,7 +336,7 @@ class CreditsPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: AppDimensions.fontBody,
                         color: AppColors.textPrimary,
@@ -353,7 +353,7 @@ class CreditsPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontSmall,
                         color: AppColors.textTertiary,
                       ),
@@ -372,6 +372,7 @@ class CreditsPage extends StatelessWidget {
     final l10n = L10n.of(context);
     showDialog(
       context: context,
+      barrierDismissible: true,
       builder: (ctx) {
         return Dialog(
           backgroundColor: Colors.transparent,
@@ -448,7 +449,7 @@ class CreditsPage extends StatelessWidget {
                         width: 200,
                         height: 200,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, _, _) => const SizedBox(
+                        errorBuilder: (_, _, _) => SizedBox(
                           width: 200,
                           height: 200,
                           child: Icon(
@@ -464,7 +465,7 @@ class CreditsPage extends StatelessWidget {
                 // Scan text
                 Text(
                   l10n.scanProfile,
-                  style: const TextStyle(
+                  style: TextStyle(
                     color: AppColors.textTertiary,
                     fontSize: AppDimensions.fontSmall,
                   ),

@@ -287,6 +287,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
     int rating = 0;
     showDialog(
       context: context,
+      barrierDismissible: true,
       builder: (ctx) => StatefulBuilder(
         builder: (ctx, setDialogState) => Dialog(
           shape: RoundedRectangleBorder(
@@ -321,7 +322,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                const Text(
+                Text(
                   'Tu opinión nos ayuda a mejorar',
                   style: TextStyle(
                     fontSize: 13,
@@ -501,8 +502,8 @@ class _ChatbotPageState extends State<ChatbotPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Reside Bot',
-                  style: const TextStyle(
+                  'SIGRA Bot',
+                  style: TextStyle(
                     fontSize: AppDimensions.fontMedium,
                     fontWeight: FontWeight.w700,
                     color: AppColors.textPrimary,
@@ -536,7 +537,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
           ),
           // Options menu
           PopupMenuButton<String>(
-            icon: const Icon(
+            icon: Icon(
               Icons.more_vert_rounded,
               size: 22,
               color: AppColors.textSecondary,
@@ -677,7 +678,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
               child: Text(
                 _mensajes.first['texto'] ?? '',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: AppDimensions.fontBody,
                   color: AppColors.textPrimary,
                   height: 1.5,
@@ -765,7 +766,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
                   children: [
                     Text(
                       topic.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 13,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
@@ -775,7 +776,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
                     ),
                     Text(
                       topic.subtitle,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 11,
                         color: AppColors.textTertiary,
                       ),
@@ -898,7 +899,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
                         )
                       : Text(
                           msg['texto'] ?? '',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: AppDimensions.fontBody,
                             color: AppColors.textPrimary,
                             height: 1.45,
@@ -911,7 +912,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
                     padding: const EdgeInsets.only(left: 4),
                     child: Text(
                       msg['hora'] ?? '',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontXS,
                         color: AppColors.textTertiary,
                       ),
@@ -973,7 +974,7 @@ class _ChatbotPageState extends State<ChatbotPage> {
               padding: const EdgeInsets.only(right: 4),
               child: Text(
                 msg['hora'] ?? '',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: AppDimensions.fontXS,
                   color: AppColors.textTertiary,
                 ),
@@ -1082,13 +1083,13 @@ class _ChatbotPageState extends State<ChatbotPage> {
                 final text = _controller.text.trim();
                 if (text.isNotEmpty) _enviarMensaje(text);
               },
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontBody,
                 color: AppColors.textPrimary,
               ),
               decoration: InputDecoration(
                 hintText: l10n.chatInputHint,
-                hintStyle: const TextStyle(
+                hintStyle: TextStyle(
                   color: AppColors.textTertiary,
                   fontSize: AppDimensions.fontBody,
                 ),

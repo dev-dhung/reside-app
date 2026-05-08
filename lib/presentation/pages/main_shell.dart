@@ -18,12 +18,24 @@ class MainShell extends StatefulWidget {
     this.userName = '',
   });
 
+  /// Switches the visible tab from anywhere inside the shell. Use this from
+  /// hub pages to send the user back to Home when pressing the back arrow.
+  static void goToTab(BuildContext context, int index) {
+    final state = context.findAncestorStateOfType<_MainShellState>();
+    state?._goToTab(index);
+  }
+
   @override
   State<MainShell> createState() => _MainShellState();
 }
 
 class _MainShellState extends State<MainShell> {
   int _currentIndex = 0;
+
+  void _goToTab(int index) {
+    if (!mounted) return;
+    setState(() => _currentIndex = index);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +53,26 @@ class _MainShellState extends State<MainShell> {
     ];
 
     return Scaffold(
-      body: IndexedStack(
-        index: _currentIndex,
-        children: pages,
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 280),
+        switchInCurve: Curves.easeOut,
+        switchOutCurve: Curves.easeIn,
+        transitionBuilder: (child, animation) {
+          return FadeTransition(
+            opacity: animation,
+            child: SlideTransition(
+              position: Tween<Offset>(
+                begin: const Offset(0, 0.02),
+                end: Offset.zero,
+              ).animate(animation),
+              child: child,
+            ),
+          );
+        },
+        child: KeyedSubtree(
+          key: ValueKey(_currentIndex),
+          child: pages[_currentIndex],
+        ),
       ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -156,7 +185,7 @@ class _NavItem extends StatelessWidget {
               duration: const Duration(milliseconds: 200),
               width: isSelected ? 5 : 0,
               height: isSelected ? 5 : 0,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: AppColors.navActive,
                 shape: BoxShape.circle,
               ),

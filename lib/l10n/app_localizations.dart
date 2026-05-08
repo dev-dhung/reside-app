@@ -100,7 +100,7 @@ abstract class L10n {
   /// No description provided for @appName.
   ///
   /// In es, this message translates to:
-  /// **'Reside'**
+  /// **'SIGRA'**
   String get appName;
 
   /// No description provided for @appSubtitle.
@@ -112,7 +112,7 @@ abstract class L10n {
   /// No description provided for @appTitle.
   ///
   /// In es, this message translates to:
-  /// **'Reside'**
+  /// **'SIGRA'**
   String get appTitle;
 
   /// No description provided for @emailOrPhoneLabel.
@@ -244,13 +244,13 @@ abstract class L10n {
   /// No description provided for @homeAdminTitle.
   ///
   /// In es, this message translates to:
-  /// **'Reside - Gestión Admin'**
+  /// **'SIGRA - Gestión Admin'**
   String get homeAdminTitle;
 
   /// No description provided for @homeResidentTitle.
   ///
   /// In es, this message translates to:
-  /// **'Reside - Mi tablero'**
+  /// **'SIGRA - Mi tablero'**
   String get homeResidentTitle;
 
   /// No description provided for @adminSectionTitle.
@@ -346,7 +346,7 @@ abstract class L10n {
   /// No description provided for @adminCajaLabel.
   ///
   /// In es, this message translates to:
-  /// **'Fondo de la Residencia'**
+  /// **'Fondo de la SIGRAncia'**
   String get adminCajaLabel;
 
   /// No description provided for @residentAccountStatus.
@@ -694,13 +694,13 @@ abstract class L10n {
   /// No description provided for @chatbotTitle.
   ///
   /// In es, this message translates to:
-  /// **'Asistente Virtual Reside'**
+  /// **'Asistente Virtual SIGRA'**
   String get chatbotTitle;
 
   /// No description provided for @chatbotGreeting.
   ///
   /// In es, this message translates to:
-  /// **'¡Hola! Soy Reside-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?'**
+  /// **'¡Hola! Soy SIGRA-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?'**
   String get chatbotGreeting;
 
   /// No description provided for @chatbotPaymentMethods.
@@ -766,7 +766,7 @@ abstract class L10n {
   /// No description provided for @chatbotIntro.
   ///
   /// In es, this message translates to:
-  /// **'¡Hola! Soy Reside-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?'**
+  /// **'¡Hola! Soy SIGRA-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?'**
   String get chatbotIntro;
 
   /// No description provided for @chatbotCourtesy.
@@ -1558,7 +1558,7 @@ abstract class L10n {
   /// No description provided for @reportsAdminTitle.
   ///
   /// In es, this message translates to:
-  /// **'Panel de Reportes Reside'**
+  /// **'Panel de Reportes SIGRA'**
   String get reportsAdminTitle;
 
   /// No description provided for @reportsResidentTitle.

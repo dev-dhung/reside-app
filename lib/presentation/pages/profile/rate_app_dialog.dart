@@ -6,6 +6,7 @@ import 'package:prototype/core/constants/app_dimensions.dart';
 Future<void> showRateAppDialog(BuildContext context) async {
   await showDialog(
     context: context,
+    barrierDismissible: true,
     builder: (_) => const _RateAppDialog(),
   );
 }
@@ -86,8 +87,8 @@ class _RateAppDialogState extends State<_RateAppDialog> {
 
             const SizedBox(height: 20),
 
-            const Text(
-              '¿Te gusta Reside?',
+            Text(
+              '¿Te gusta SIGRA?',
               style: TextStyle(
                 fontSize: AppDimensions.fontXL,
                 fontWeight: FontWeight.w700,
@@ -95,7 +96,7 @@ class _RateAppDialogState extends State<_RateAppDialog> {
               ),
             ),
             const SizedBox(height: 6),
-            const Text(
+            Text(
               'Tu opinión nos ayuda a mejorar',
               style: TextStyle(
                 fontSize: AppDimensions.fontBody,
@@ -140,7 +141,7 @@ class _RateAppDialogState extends State<_RateAppDialog> {
               maxLines: 3,
               decoration: InputDecoration(
                 hintText: 'Cuéntanos más (opcional)',
-                hintStyle: const TextStyle(color: AppColors.textTertiary),
+                hintStyle: TextStyle(color: AppColors.textTertiary),
                 filled: true,
                 fillColor: AppColors.inputBackground,
                 border: OutlineInputBorder(
@@ -190,7 +191,7 @@ class _RateAppDialogState extends State<_RateAppDialog> {
             // -- Skip button --
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text(
+              child: Text(
                 'Más tarde',
                 style: TextStyle(
                   color: AppColors.textSecondary,

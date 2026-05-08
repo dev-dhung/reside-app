@@ -108,6 +108,8 @@ class _VotingPageState extends State<VotingPage> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      isDismissible: true,
+      enableDrag: true,
       backgroundColor: AppColors.cardBackground,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -141,7 +143,7 @@ class _VotingPageState extends State<VotingPage> {
                 const SizedBox(height: AppDimensions.paddingLarge),
                 Text(
                   l10n.createPollTitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontXL,
                     fontWeight: FontWeight.w700,
                     color: AppColors.textPrimary,
@@ -161,7 +163,7 @@ class _VotingPageState extends State<VotingPage> {
                 const SizedBox(height: AppDimensions.paddingMedium),
                 Text(
                   l10n.optionsLabel,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontMedium,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textPrimary,
@@ -371,11 +373,11 @@ class _VotingPageState extends State<VotingPage> {
             Container(
               width: 80,
               height: 80,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: AppColors.primarySurface,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.how_to_vote_outlined,
+              child: Icon(Icons.how_to_vote_outlined,
                   size: AppDimensions.iconXL,
                   color: AppColors.textTertiary),
             ),
@@ -386,7 +388,7 @@ class _VotingPageState extends State<VotingPage> {
                   : status == PollStatus.closed
                       ? l10n.noClosedPolls
                       : l10n.noUpcomingPolls,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontMedium,
                 color: AppColors.textSecondary,
               ),
@@ -433,7 +435,7 @@ class _VotingPageState extends State<VotingPage> {
                   Expanded(
                     child: Text(
                       poll.title,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontLarge,
                         fontWeight: FontWeight.w700,
                         color: AppColors.textPrimary,
@@ -447,7 +449,7 @@ class _VotingPageState extends State<VotingPage> {
               const SizedBox(height: AppDimensions.paddingSmall),
               Text(
                 poll.description,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: AppDimensions.fontBody,
                   color: AppColors.textSecondary,
                 ),
@@ -506,7 +508,7 @@ class _VotingPageState extends State<VotingPage> {
             Expanded(
               child: Text(
                 label,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: AppDimensions.fontSmall,
                   fontWeight: FontWeight.w500,
                   color: AppColors.textSecondary,
@@ -515,7 +517,7 @@ class _VotingPageState extends State<VotingPage> {
             ),
             Text(
               '${(progress * 100).toStringAsFixed(0)}%',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontSmall,
                 color: AppColors.textTertiary,
               ),
@@ -562,13 +564,13 @@ class _VotingPageState extends State<VotingPage> {
       children: [
         Row(
           children: [
-            const Icon(Icons.calendar_today,
+            Icon(Icons.calendar_today,
                 size: AppDimensions.iconSmall,
                 color: AppColors.textSecondary),
             const SizedBox(width: AppDimensions.paddingSmall),
             Text(
               l10n.pollStartsOn(formatter(poll.startDate)),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontBody,
                 color: AppColors.textSecondary,
               ),
@@ -578,13 +580,13 @@ class _VotingPageState extends State<VotingPage> {
         const SizedBox(height: AppDimensions.paddingXS),
         Row(
           children: [
-            const Icon(Icons.calendar_today,
+            Icon(Icons.calendar_today,
                 size: AppDimensions.iconSmall,
                 color: AppColors.textSecondary),
             const SizedBox(width: AppDimensions.paddingSmall),
             Text(
               l10n.pollEndsOn(formatter(poll.endDate)),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontBody,
                 color: AppColors.textSecondary,
               ),
@@ -610,7 +612,7 @@ class _VotingPageState extends State<VotingPage> {
                 .map((opt) => RadioListTile<String>(
                       title: Text(
                         opt.label,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: AppDimensions.fontBody,
                           color: AppColors.textPrimary,
                         ),
@@ -679,7 +681,7 @@ class _VotingPageState extends State<VotingPage> {
                   ),
                   Text(
                     '${opt.percentage.toStringAsFixed(1)}%',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontBody,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
@@ -728,7 +730,7 @@ class _VotingPageState extends State<VotingPage> {
                 child: Text(
                   l10n.voteResults(opt.votes,
                       opt.percentage.toStringAsFixed(1)),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontSmall,
                     color: AppColors.textTertiary,
                   ),
@@ -791,7 +793,7 @@ class _DatePickerField extends StatelessWidget {
             Text(text,
                 style:
                     const TextStyle(fontSize: AppDimensions.fontBody)),
-            const Icon(Icons.calendar_today,
+            Icon(Icons.calendar_today,
                 size: AppDimensions.iconSmall,
                 color: AppColors.textSecondary),
           ],

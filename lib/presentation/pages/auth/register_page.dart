@@ -89,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(height: AppDimensions.paddingXL),
                   Text(
                     l10n.registerSubtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontXL,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
@@ -98,7 +98,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(height: AppDimensions.paddingSmall),
                   Text(
                     l10n.registerDescription,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontBody,
                       color: AppColors.textSecondary,
                     ),
@@ -109,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   AppTextField(
                     label: l10n.invitationCodeLabel,
                     hintText: l10n.invitationCodeHint,
-                    prefixIcon: const Icon(
+                    prefixIcon: Icon(
                       Icons.vpn_key_outlined,
                       color: AppColors.textTertiary,
                       size: 20,
@@ -121,7 +121,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   AppTextField(
                     label: l10n.emailLabel,
                     keyboardType: TextInputType.emailAddress,
-                    prefixIcon: const Icon(
+                    prefixIcon: Icon(
                       Icons.email_outlined,
                       color: AppColors.textTertiary,
                       size: 20,
@@ -133,7 +133,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   AppTextField(
                     label: l10n.passwordLabel,
                     obscureText: _obscurePassword,
-                    prefixIcon: const Icon(
+                    prefixIcon: Icon(
                       Icons.lock_outline_rounded,
                       color: AppColors.textTertiary,
                       size: 20,

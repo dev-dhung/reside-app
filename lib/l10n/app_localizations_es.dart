@@ -9,13 +9,13 @@ class L10nEs extends L10n {
   L10nEs([String locale = 'es']) : super(locale);
 
   @override
-  String get appName => 'Reside';
+  String get appName => 'SIGRA';
 
   @override
   String get appSubtitle => 'Tu comunidad, conectada';
 
   @override
-  String get appTitle => 'Reside';
+  String get appTitle => 'SIGRA';
 
   @override
   String get emailOrPhoneLabel => 'Correo electrónico o teléfono';
@@ -81,10 +81,10 @@ class L10nEs extends L10n {
   String get welcomeMessage => 'Bienvenido';
 
   @override
-  String get homeAdminTitle => 'Reside - Gestión Admin';
+  String get homeAdminTitle => 'SIGRA - Gestión Admin';
 
   @override
-  String get homeResidentTitle => 'Reside - Mi tablero';
+  String get homeResidentTitle => 'SIGRA - Mi tablero';
 
   @override
   String get adminSectionTitle => 'Panel de Control Administrativo';
@@ -132,7 +132,7 @@ class L10nEs extends L10n {
   String get adminRecaudation => 'Recaudación Total Mensual';
 
   @override
-  String get adminCajaLabel => 'Fondo de la Residencia';
+  String get adminCajaLabel => 'Fondo de la SIGRAncia';
 
   @override
   String get residentAccountStatus => 'Estado de Cuenta';
@@ -316,11 +316,11 @@ class L10nEs extends L10n {
   String get logoutButton => 'CERRAR SESIÓN';
 
   @override
-  String get chatbotTitle => 'Asistente Virtual Reside';
+  String get chatbotTitle => 'Asistente Virtual SIGRA';
 
   @override
   String get chatbotGreeting =>
-      '¡Hola! Soy Reside-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?';
+      '¡Hola! Soy SIGRA-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?';
 
   @override
   String get chatbotPaymentMethods =>
@@ -363,7 +363,7 @@ class L10nEs extends L10n {
 
   @override
   String get chatbotIntro =>
-      '¡Hola! Soy Reside-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?';
+      '¡Hola! Soy SIGRA-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?';
 
   @override
   String get chatbotCourtesy => '¡Siempre a la orden! ¿Algo más?';
@@ -792,7 +792,7 @@ class L10nEs extends L10n {
   String get available24h => '24h';
 
   @override
-  String get reportsAdminTitle => 'Panel de Reportes Reside';
+  String get reportsAdminTitle => 'Panel de Reportes SIGRA';
 
   @override
   String get reportsResidentTitle => 'Mis Estadísticas';

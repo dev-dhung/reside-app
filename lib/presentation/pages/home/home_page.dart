@@ -159,6 +159,12 @@ class HomePage extends StatelessWidget {
                   ),
                   const SizedBox(height: AppDimensions.paddingLarge),
 
+                  // Métricas destacadas (solo admin)
+                  if (isAdmin) ...[
+                    const _MetricsHighlightCard(),
+                    const SizedBox(height: AppDimensions.paddingLarge),
+                  ],
+
                   // Quick Actions
                   _buildQuickActionsSection(context, l10n),
                   const SizedBox(height: AppDimensions.paddingLarge),
@@ -189,7 +195,7 @@ class HomePage extends StatelessWidget {
       children: [
         Text(
           l10n.quickActions,
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: AppDimensions.fontLarge,
             fontWeight: FontWeight.w600,
             color: AppColors.textPrimary,
@@ -307,7 +313,7 @@ class HomePage extends StatelessWidget {
           children: [
             Text(
               l10n.recentActivity,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontLarge,
                 fontWeight: FontWeight.w600,
                 color: AppColors.textPrimary,
@@ -432,7 +438,7 @@ class _ActionCard extends StatelessWidget {
                 children: [
                   Text(
                     label,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
@@ -443,7 +449,7 @@ class _ActionCard extends StatelessWidget {
                   const SizedBox(height: 2),
                   Text(
                     subtitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 11,
                       color: AppColors.textTertiary,
                     ),
@@ -451,6 +457,94 @@ class _ActionCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                 ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// --- Metrics Highlight Card (admin only) -----------------------------------------
+
+class _MetricsHighlightCard extends StatelessWidget {
+  const _MetricsHighlightCard();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, AppRoutes.metrics),
+      child: Container(
+        padding: const EdgeInsets.all(AppDimensions.paddingLarge),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+            colors: AppColors.gradientPrimary,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          borderRadius: BorderRadius.circular(AppDimensions.radiusXXL),
+          boxShadow: [
+            BoxShadow(
+              color: AppColors.primary.withValues(alpha: 0.25),
+              blurRadius: 20,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.18),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: const Icon(
+                Icons.insights_rounded,
+                color: Colors.white,
+                size: 26,
+              ),
+            ),
+            const SizedBox(width: 14),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Métricas y Estadísticas',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    'Actividad de propietarios · Exportar PDF / CSV',
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Colors.white70,
+                    ),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              width: 32,
+              height: 32,
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Icon(
+                Icons.arrow_forward_rounded,
+                color: Colors.white,
+                size: 18,
               ),
             ),
           ],
@@ -507,7 +601,7 @@ class _ActivityCard extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontBody,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textPrimary,
@@ -516,7 +610,7 @@ class _ActivityCard extends StatelessWidget {
                 const SizedBox(height: 2),
                 Text(
                   subtitle,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontSmall,
                     fontWeight: FontWeight.w400,
                     color: AppColors.textTertiary,
@@ -527,7 +621,7 @@ class _ActivityCard extends StatelessWidget {
           ),
           Text(
             trailing,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: AppDimensions.fontXS,
               fontWeight: FontWeight.w400,
               color: AppColors.textTertiary,

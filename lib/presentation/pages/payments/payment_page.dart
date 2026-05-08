@@ -62,6 +62,7 @@ class _PaymentPageState extends State<PaymentPage> {
     final l10n = L10n.of(context);
     showDialog(
       context: context,
+      barrierDismissible: true,
       barrierColor: AppColors.overlay,
       builder: (ctx) => Dialog(
         shape: RoundedRectangleBorder(
@@ -76,7 +77,7 @@ class _PaymentPageState extends State<PaymentPage> {
               Container(
                 width: AppDimensions.iconHero,
                 height: AppDimensions.iconHero,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppColors.primarySurface,
                   shape: BoxShape.circle,
                 ),
@@ -90,7 +91,7 @@ class _PaymentPageState extends State<PaymentPage> {
               Text(
                 l10n.paymentSuccessMessage,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: AppDimensions.fontMedium,
                   color: AppColors.textPrimary,
                   height: 1.4,
@@ -127,7 +128,7 @@ class _PaymentPageState extends State<PaymentPage> {
             // Section header
             Text(
               l10n.transactionDetails,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontXL,
                 fontWeight: FontWeight.w600,
                 color: AppColors.textPrimary,
@@ -138,7 +139,7 @@ class _PaymentPageState extends State<PaymentPage> {
             // Payment method label
             Text(
               l10n.paymentMethodLabel,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontBody,
                 fontWeight: FontWeight.w500,
                 color: AppColors.textSecondary,
@@ -211,7 +212,7 @@ class _PaymentPageState extends State<PaymentPage> {
             AppTextField(
               label: l10n.referenceNumberLabel,
               controller: _referenceController,
-              prefixIcon: const Icon(
+              prefixIcon: Icon(
                 Icons.tag_rounded,
                 size: AppDimensions.iconSmall,
                 color: AppColors.textTertiary,
@@ -246,7 +247,7 @@ class _PaymentPageState extends State<PaymentPage> {
                 ),
                 child: Row(
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.calendar_today_outlined,
                       size: AppDimensions.iconSmall,
                       color: AppColors.textTertiary,
@@ -274,7 +275,7 @@ class _PaymentPageState extends State<PaymentPage> {
               label: l10n.amountLabel,
               controller: _amountController,
               keyboardType: TextInputType.number,
-              prefixIcon: const Icon(
+              prefixIcon: Icon(
                 Icons.attach_money_rounded,
                 size: AppDimensions.iconSmall,
                 color: AppColors.textTertiary,
@@ -329,7 +330,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       const SizedBox(height: AppDimensions.paddingSmall),
                       Text(
                         l10n.attachReceipt,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: AppDimensions.fontBody,
                           color: AppColors.textTertiary,
                           fontWeight: FontWeight.w500,

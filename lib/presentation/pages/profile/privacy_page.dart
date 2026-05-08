@@ -60,7 +60,7 @@ class PrivacyPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
+                    Text(
                       'En Reside, la privacidad de nuestros usuarios es una prioridad. '
                       'Esta política describe cómo recopilamos, usamos y protegemos su '
                       'información personal.',
@@ -117,7 +117,7 @@ class PrivacyPage extends StatelessWidget {
                     ),
 
                     const SizedBox(height: AppDimensions.paddingMedium),
-                    const Divider(color: AppColors.divider),
+                    Divider(color: AppColors.divider),
                     const SizedBox(height: AppDimensions.paddingMedium),
                     Center(
                       child: Text(
@@ -156,7 +156,7 @@ class PrivacyPage extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             body,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: AppDimensions.fontBody,
               height: 1.6,
               color: AppColors.textSecondary,

@@ -469,7 +469,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                 ),
                 Text(
                   label,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontXS,
                     fontWeight: FontWeight.w600,
                     color: AppColors.textSecondary,
@@ -614,7 +614,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                 ),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.build_circle_outlined,
                 size: AppDimensions.iconXL,
                 color: AppColors.textTertiary,
@@ -625,7 +625,7 @@ class _MaintenancePageState extends State<MaintenancePage>
               widget.isAdmin
                   ? l10n.noRequestsFilter
                   : l10n.noRequestsRegistered,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontMedium,
                 fontWeight: FontWeight.w600,
                 color: AppColors.textSecondary,
@@ -746,7 +746,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                                     children: [
                                       Text(
                                         request.title,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           fontWeight: FontWeight.w700,
                                           fontSize:
                                               AppDimensions.fontBody,
@@ -777,7 +777,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                                 const SizedBox(width: 8),
                                 Text(
                                   _formatDate(request.createdAt),
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                     fontSize: AppDimensions.fontXS,
                                     color: AppColors.textTertiary,
                                     fontWeight: FontWeight.w500,
@@ -793,7 +793,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                               ),
                               child: Text(
                                 request.description,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontSize: AppDimensions.fontSmall,
                                   color: AppColors.textTertiary,
                                   height: 1.4,
@@ -834,7 +834,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                                     Flexible(
                                       child: Text(
                                         request.assignedTo!,
-                                        style: const TextStyle(
+                                        style: TextStyle(
                                           fontSize:
                                               AppDimensions.fontXS,
                                           color:
@@ -890,6 +890,8 @@ class _MaintenancePageState extends State<MaintenancePage>
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      isDismissible: true,
+      enableDrag: true,
       backgroundColor: Colors.transparent,
       builder: (ctx) {
         return StatefulBuilder(
@@ -899,7 +901,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                 maxHeight:
                     MediaQuery.of(ctx).size.height * 0.92,
               ),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: AppColors.cardBackground,
                 borderRadius: BorderRadius.vertical(
                   top: Radius.circular(AppDimensions.radiusXXL),
@@ -960,7 +962,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                                 width: AppDimensions.paddingSmall + 4),
                             Text(
                               l10n.newRequestTitle,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: AppDimensions.fontXL,
                                 fontWeight: FontWeight.w800,
                                 color: AppColors.textPrimary,
@@ -1209,7 +1211,7 @@ class _MaintenancePageState extends State<MaintenancePage>
   Widget _sectionLabel(String text) {
     return Text(
       text,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: AppDimensions.fontBody,
         fontWeight: FontWeight.w600,
         color: AppColors.textSecondary,
@@ -1325,6 +1327,7 @@ class _MaintenancePageState extends State<MaintenancePage>
 
     showDialog(
       context: context,
+      barrierDismissible: true,
       builder: (ctx) {
         return StatefulBuilder(
           builder: (ctx, setDialogState) {
@@ -1402,7 +1405,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                                             alpha: 0.1),
                                     shape: BoxShape.circle,
                                   ),
-                                  child: const Icon(
+                                  child: Icon(
                                     Icons.close_rounded,
                                     size: 18,
                                     color: AppColors
@@ -1417,7 +1420,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                                   AppDimensions.paddingMedium),
                           Text(
                             request.title,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize:
                                   AppDimensions.fontLarge,
                               fontWeight: FontWeight.w800,
@@ -1457,7 +1460,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                                   AppDimensions.paddingXS),
                           Text(
                             _formatDate(request.createdAt),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize:
                                   AppDimensions.fontSmall,
                               color: AppColors.textTertiary,
@@ -1479,7 +1482,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                           // Description
                           Text(
                             request.description,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize:
                                   AppDimensions.fontBody,
                               color: AppColors.textPrimary,
@@ -1590,7 +1593,7 @@ class _MaintenancePageState extends State<MaintenancePage>
                             label: l10n.assignToLabel,
                             controller: assignCtrl,
                             hintText: l10n.assignToHint,
-                            prefixIcon: const Icon(
+                            prefixIcon: Icon(
                               Icons
                                   .person_outline_rounded,
                               size: 20,
@@ -1608,8 +1611,8 @@ class _MaintenancePageState extends State<MaintenancePage>
                             controller: notesCtrl,
                             hintText: l10n.adminNotesHint,
                             maxLines: 3,
-                            prefixIcon: const Padding(
-                              padding: EdgeInsets.only(
+                            prefixIcon: Padding(
+                              padding: const EdgeInsets.only(
                                   bottom: 40),
                               child: Icon(
                                 Icons

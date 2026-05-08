@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prototype/core/constants/app_colors.dart';
 
 class SettingsProvider extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.light;
@@ -15,12 +16,14 @@ class SettingsProvider extends ChangeNotifier {
   void toggleTheme() {
     _themeMode =
         _themeMode == ThemeMode.light ? ThemeMode.dark : ThemeMode.light;
+    AppColors.setDarkMode(isDarkMode);
     notifyListeners();
   }
 
   void setThemeMode(ThemeMode mode) {
     if (_themeMode != mode) {
       _themeMode = mode;
+      AppColors.setDarkMode(isDarkMode);
       notifyListeners();
     }
   }

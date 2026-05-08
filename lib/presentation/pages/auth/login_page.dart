@@ -22,8 +22,8 @@ class _LoginPageState extends State<LoginPage> {
 
   // Mock credentials
   static const _mockUsers = {
-    'vecino@reside.com': {'password': '1234', 'isAdmin': false, 'name': 'María García'},
-    'admin@reside.com': {'password': '1234', 'isAdmin': true, 'name': 'Carlos Méndez'},
+    'vecino@sigra.com': {'password': '1234', 'isAdmin': false, 'name': 'María García'},
+    'admin@sigra.com': {'password': '1234', 'isAdmin': true, 'name': 'Carlos Méndez'},
   };
 
   void _handleLogin() {
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(height: 28),
                   Text(
                     l10n.welcomeMessage,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
                       color: AppColors.textPrimary,
@@ -133,7 +133,8 @@ class _LoginPageState extends State<LoginPage> {
                     label: l10n.emailOrPhoneLabel,
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
-                    prefixIcon: const Icon(
+                    onSubmitted: (_) => _handleLogin(),
+                    prefixIcon: Icon(
                       Icons.email_outlined,
                       color: AppColors.textTertiary,
                       size: 20,
@@ -145,7 +146,8 @@ class _LoginPageState extends State<LoginPage> {
                     label: l10n.passwordLabel,
                     controller: _passwordController,
                     obscureText: _obscurePassword,
-                    prefixIcon: const Icon(
+                    onSubmitted: (_) => _handleLogin(),
+                    prefixIcon: Icon(
                       Icons.lock_outline_rounded,
                       color: AppColors.textTertiary,
                       size: 20,
@@ -217,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4),
                                 ),
-                                side: const BorderSide(
+                                side: BorderSide(
                                   color: AppColors.textTertiary,
                                   width: 1.5,
                                 ),
@@ -226,7 +228,7 @@ class _LoginPageState extends State<LoginPage> {
                             const SizedBox(width: 8),
                             Text(
                               l10n.rememberMe,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 13,
                                 color: AppColors.textSecondary,
                               ),
@@ -308,7 +310,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          'Vecino: vecino@reside.com / 1234\nAdmin:  admin@reside.com / 1234',
+                          'Vecino: vecino@sigra.com / 1234\nAdmin:  admin@sigra.com / 1234',
                           style: TextStyle(
                             fontSize: 11,
                             color: AppColors.textSecondary,
@@ -317,6 +319,21 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                       ],
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, AppRoutes.credits),
+                      child: Text(
+                        l10n.developedBy,
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: AppColors.textTertiary,
+                        ),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 16),

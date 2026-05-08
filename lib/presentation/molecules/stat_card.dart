@@ -24,11 +24,11 @@ class StatCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.cardBackground,
         borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 20,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),
@@ -57,7 +57,7 @@ class StatCard extends StatelessWidget {
                 children: [
                   Text(
                     title.toUpperCase(),
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontSmall,
                       color: AppColors.textSecondary,
                       letterSpacing: 1,
@@ -67,7 +67,7 @@ class StatCard extends StatelessWidget {
                   const SizedBox(height: AppDimensions.paddingXS),
                   Text(
                     value,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontTitle,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,

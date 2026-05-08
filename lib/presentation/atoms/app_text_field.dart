@@ -37,7 +37,7 @@ class AppTextField extends StatelessWidget {
       validator: validator,
       maxLines: maxLines,
       onFieldSubmitted: onSubmitted,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: AppDimensions.fontBody,
         color: AppColors.textPrimary,
       ),
@@ -48,11 +48,11 @@ class AppTextField extends StatelessWidget {
         prefixIcon: prefixIcon,
         filled: true,
         fillColor: AppColors.inputBackground,
-        labelStyle: const TextStyle(
+        labelStyle: TextStyle(
           fontSize: AppDimensions.fontBody,
           color: AppColors.textSecondary,
         ),
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
           fontSize: AppDimensions.fontBody,
           color: AppColors.textTertiary,
         ),

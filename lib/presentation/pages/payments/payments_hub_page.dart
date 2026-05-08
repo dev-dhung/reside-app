@@ -3,6 +3,7 @@ import 'package:prototype/core/constants/app_colors.dart';
 import 'package:prototype/core/constants/app_dimensions.dart';
 import 'package:prototype/core/routes/app_routes.dart';
 import 'package:prototype/l10n/app_localizations.dart';
+import 'package:prototype/presentation/pages/main_shell.dart';
 
 class PaymentsHubPage extends StatelessWidget {
   final bool isAdmin;
@@ -20,6 +21,7 @@ class PaymentsHubPage extends StatelessWidget {
           _WaveHeader(
             icon: Icons.account_balance_wallet_rounded,
             title: l10n.paymentsHubTitle,
+            onBack: () => MainShell.goToTab(context, 0),
           ),
           // -- Cards --
           Expanded(
@@ -65,19 +67,24 @@ class PaymentsHubPage extends StatelessWidget {
 class _WaveHeader extends StatelessWidget {
   final IconData icon;
   final String title;
+  final VoidCallback? onBack;
 
-  const _WaveHeader({required this.icon, required this.title});
+  const _WaveHeader({
+    required this.icon,
+    required this.title,
+    this.onBack,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150,
+      height: 180,
       child: Stack(
         children: [
           ClipPath(
             clipper: _SmallWaveClipper(),
             child: Container(
-              height: 150,
+              height: 180,
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   colors: AppColors.gradientPrimary,
@@ -101,7 +108,7 @@ class _WaveHeader extends StatelessWidget {
             ),
           ),
           Positioned(
-            top: 50,
+            top: 70,
             left: -15,
             child: Container(
               width: 50,
@@ -116,11 +123,33 @@ class _WaveHeader extends StatelessWidget {
           SafeArea(
             bottom: false,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: AppDimensions.paddingLarge,
+              padding: const EdgeInsets.fromLTRB(
+                AppDimensions.paddingMedium,
+                AppDimensions.paddingXL,
+                AppDimensions.paddingLarge,
+                0,
               ),
               child: Row(
                 children: [
+                  if (onBack != null) ...[
+                    GestureDetector(
+                      onTap: onBack,
+                      child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.18),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: const Icon(
+                          Icons.arrow_back_rounded,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: AppDimensions.paddingMedium),
+                  ],
                   Container(
                     width: 48,
                     height: 48,
@@ -131,13 +160,17 @@ class _WaveHeader extends StatelessWidget {
                     child: Icon(icon, color: Colors.white, size: 26),
                   ),
                   const SizedBox(width: AppDimensions.paddingMedium),
-                  Text(
-                    title,
-                    style: const TextStyle(
-                      fontSize: AppDimensions.fontTitle,
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
-                      letterSpacing: 0.5,
+                  Expanded(
+                    child: Text(
+                      title,
+                      style: const TextStyle(
+                        fontSize: AppDimensions.fontTitle,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                        letterSpacing: 0.5,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
@@ -219,7 +252,7 @@ class _GroovyHubCard extends StatelessWidget {
                           children: [
                             Text(
                               title,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: AppDimensions.fontMedium,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.textPrimary,
@@ -228,7 +261,7 @@ class _GroovyHubCard extends StatelessWidget {
                             const SizedBox(height: 4),
                             Text(
                               subtitle,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: AppDimensions.fontBody,
                                 color: AppColors.textSecondary,
                               ),
@@ -236,7 +269,7 @@ class _GroovyHubCard extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const Icon(
+                      Icon(
                         Icons.chevron_right_rounded,
                         color: AppColors.textTertiary,
                         size: 24,

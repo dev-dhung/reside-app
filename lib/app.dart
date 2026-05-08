@@ -24,6 +24,7 @@ import 'package:prototype/presentation/pages/profile/contact_support_page.dart';
 import 'package:prototype/presentation/pages/profile/change_password_page.dart';
 import 'package:prototype/presentation/pages/profile/terms_page.dart';
 import 'package:prototype/presentation/pages/profile/privacy_page.dart';
+import 'package:prototype/presentation/pages/metrics/metrics_page.dart';
 
 class SigraApp extends StatefulWidget {
   const SigraApp({super.key});
@@ -63,7 +64,7 @@ class SigraAppState extends State<SigraApp> {
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 430),
         child: MaterialApp(
-          title: 'Reside',
+          title: 'SIGRA',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
@@ -138,6 +139,8 @@ class SigraAppState extends State<SigraApp> {
         return _buildRoute(const TermsPage(), settings);
       case AppRoutes.privacy:
         return _buildRoute(const PrivacyPage(), settings);
+      case AppRoutes.metrics:
+        return _buildRoute(const MetricsPage(), settings);
       default:
         return _buildRoute(const LoginPage(), settings);
     }

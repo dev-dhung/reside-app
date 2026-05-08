@@ -29,7 +29,7 @@ class ChatInputBar extends StatelessWidget {
         horizontal: AppDimensions.paddingMedium,
         vertical: AppDimensions.paddingSmall,
       ),
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
         color: AppColors.surface,
         boxShadow: [
           BoxShadow(
@@ -46,13 +46,13 @@ class ChatInputBar extends StatelessWidget {
               controller: controller,
               textInputAction: TextInputAction.send,
               onSubmitted: (_) => _handleSend(),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontBody,
                 color: AppColors.textPrimary,
               ),
               decoration: InputDecoration(
                 hintText: l10n.chatInputHint,
-                hintStyle: const TextStyle(
+                hintStyle: TextStyle(
                   color: AppColors.textTertiary,
                   fontSize: AppDimensions.fontBody,
                 ),

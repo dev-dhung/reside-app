@@ -112,7 +112,7 @@ class TermsPage extends StatelessWidget {
                     ),
 
                     const SizedBox(height: AppDimensions.paddingXL),
-                    const Divider(color: AppColors.divider),
+                    Divider(color: AppColors.divider),
                     const SizedBox(height: AppDimensions.paddingMedium),
                     Center(
                       child: Text(
@@ -151,7 +151,7 @@ class TermsPage extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             body,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: AppDimensions.fontBody,
               height: 1.6,
               color: AppColors.textSecondary,

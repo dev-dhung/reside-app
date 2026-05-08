@@ -28,7 +28,7 @@ class BarChartRow extends StatelessWidget {
               Expanded(
                 child: Text(
                   label,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 13,
                     fontWeight: FontWeight.w500,
                     color: AppColors.textPrimary,
@@ -38,7 +38,7 @@ class BarChartRow extends StatelessWidget {
               ),
               Text(
                 '$displayPercent%',
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: AppDimensions.fontSmall,
                   color: AppColors.textTertiary,
                 ),

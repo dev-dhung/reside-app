@@ -197,15 +197,15 @@ class _VisitorsPageState extends State<VisitorsPage> {
           },
           decoration: InputDecoration(
             hintText: l10n.searchVisitorHint,
-            hintStyle: const TextStyle(
+            hintStyle: TextStyle(
               color: AppColors.textTertiary,
               fontSize: AppDimensions.fontBody,
             ),
             prefixIcon:
-                const Icon(Icons.search, color: AppColors.textTertiary),
+                Icon(Icons.search, color: AppColors.textTertiary),
             suffixIcon: _searchQuery.isNotEmpty
                 ? IconButton(
-                    icon: const Icon(Icons.clear,
+                    icon: Icon(Icons.clear,
                         color: AppColors.textTertiary),
                     onPressed: () {
                       _searchController.clear();
@@ -288,7 +288,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
           const SizedBox(height: AppDimensions.paddingXS),
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: AppDimensions.fontSmall,
               color: AppColors.textSecondary,
               fontWeight: FontWeight.w500,
@@ -310,11 +310,11 @@ class _VisitorsPageState extends State<VisitorsPage> {
             Container(
               width: 80,
               height: 80,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: AppColors.primarySurface,
                 shape: BoxShape.circle,
               ),
-              child: const Icon(Icons.people_outline,
+              child: Icon(Icons.people_outline,
                   size: AppDimensions.iconXL, color: AppColors.textTertiary),
             ),
             const SizedBox(height: AppDimensions.paddingMedium),
@@ -322,7 +322,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
               widget.isAdmin
                   ? l10n.noVisitorsFound
                   : l10n.noVisitorsRegistered,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontMedium,
                 color: AppColors.textSecondary,
               ),
@@ -370,7 +370,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
                   children: [
                     Text(
                       visitor.visitorName,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: AppDimensions.fontMedium,
                         color: AppColors.textPrimary,
@@ -379,7 +379,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
                     const SizedBox(height: 2),
                     Text(
                       '${visitor.visitorCedula}  |  ${_formatDate(visitor.expectedDate)}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontSmall,
                         color: AppColors.textSecondary,
                       ),
@@ -397,12 +397,12 @@ class _VisitorsPageState extends State<VisitorsPage> {
             const SizedBox(height: AppDimensions.paddingSmall),
             Row(
               children: [
-                const Icon(Icons.directions_car,
+                Icon(Icons.directions_car,
                     size: 16, color: AppColors.textSecondary),
                 const SizedBox(width: AppDimensions.paddingXS),
                 Text(
                   visitor.vehiclePlate!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontSmall,
                     color: AppColors.textSecondary,
                   ),
@@ -414,13 +414,13 @@ class _VisitorsPageState extends State<VisitorsPage> {
             const SizedBox(height: AppDimensions.paddingXS),
             Row(
               children: [
-                const Icon(Icons.note_outlined,
+                Icon(Icons.note_outlined,
                     size: 16, color: AppColors.textSecondary),
                 const SizedBox(width: AppDimensions.paddingXS),
                 Flexible(
                   child: Text(
                     visitor.notes!,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontSmall,
                       color: AppColors.textSecondary,
                     ),
@@ -492,7 +492,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
                   children: [
                     Text(
                       visitor.visitorName,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: AppDimensions.fontMedium,
                         color: AppColors.textPrimary,
@@ -501,7 +501,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
                     const SizedBox(height: 2),
                     Text(
                       'Apto ${visitor.residentApartment}  |  ${visitor.visitorCedula}',
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontSmall,
                         color: AppColors.textSecondary,
                       ),
@@ -518,12 +518,12 @@ class _VisitorsPageState extends State<VisitorsPage> {
           const SizedBox(height: AppDimensions.paddingSmall),
           Row(
             children: [
-              const Icon(Icons.calendar_today,
+              Icon(Icons.calendar_today,
                   size: 14, color: AppColors.textSecondary),
               const SizedBox(width: AppDimensions.paddingXS),
               Text(
                 _formatDate(visitor.expectedDate),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: AppDimensions.fontSmall,
                   color: AppColors.textSecondary,
                 ),
@@ -542,12 +542,12 @@ class _VisitorsPageState extends State<VisitorsPage> {
               ],
               if (visitor.exitTime != null) ...[
                 const SizedBox(width: AppDimensions.paddingMedium),
-                const Icon(Icons.logout,
+                Icon(Icons.logout,
                     size: 14, color: AppColors.textTertiary),
                 const SizedBox(width: AppDimensions.paddingXS),
                 Text(
                   _formatTime(visitor.exitTime!),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontSmall,
                     color: AppColors.textTertiary,
                   ),
@@ -555,12 +555,12 @@ class _VisitorsPageState extends State<VisitorsPage> {
               ],
               if (visitor.vehiclePlate != null) ...[
                 const Spacer(),
-                const Icon(Icons.directions_car,
+                Icon(Icons.directions_car,
                     size: 14, color: AppColors.textSecondary),
                 const SizedBox(width: AppDimensions.paddingXS),
                 Text(
                   visitor.vehiclePlate!,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontSmall,
                     color: AppColors.textSecondary,
                   ),
@@ -622,6 +622,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
 
     showDialog(
       context: context,
+      barrierDismissible: true,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
@@ -698,6 +699,8 @@ class _VisitorsPageState extends State<VisitorsPage> {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
+      isDismissible: true,
+      enableDrag: true,
       backgroundColor: AppColors.cardBackground,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(
@@ -736,7 +739,7 @@ class _VisitorsPageState extends State<VisitorsPage> {
                       const SizedBox(height: AppDimensions.paddingLarge),
                       Text(
                         l10n.registerVisitorTitle,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: AppDimensions.fontXL,
                           fontWeight: FontWeight.w700,
                           color: AppColors.textPrimary,
@@ -792,18 +795,18 @@ class _VisitorsPageState extends State<VisitorsPage> {
                               borderRadius: BorderRadius.circular(
                                   AppDimensions.radiusMedium),
                               borderSide:
-                                  const BorderSide(color: AppColors.divider),
+                                  BorderSide(color: AppColors.divider),
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
                                   AppDimensions.radiusMedium),
                               borderSide:
-                                  const BorderSide(color: AppColors.divider),
+                                  BorderSide(color: AppColors.divider),
                             ),
                           ),
                           child: Text(
                             _formatDate(selectedDate),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: AppDimensions.fontBody,
                               color: AppColors.textPrimary,
                             ),

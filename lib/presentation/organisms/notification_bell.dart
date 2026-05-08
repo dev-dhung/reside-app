@@ -22,7 +22,7 @@ class NotificationBell extends StatelessWidget {
         child: Stack(
           clipBehavior: Clip.none,
           children: [
-            const Center(
+            Center(
               child: Icon(
                 Icons.notifications_outlined,
                 size: AppDimensions.iconMedium,

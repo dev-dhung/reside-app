@@ -25,18 +25,18 @@ class AnnouncementsPage extends StatelessWidget {
                   Container(
                     width: 80,
                     height: 80,
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       color: AppColors.primarySurface,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.campaign_outlined,
+                    child: Icon(Icons.campaign_outlined,
                         size: AppDimensions.iconXL,
                         color: AppColors.textTertiary),
                   ),
                   const SizedBox(height: AppDimensions.paddingMedium),
                   Text(
                     l10n.announcementsTitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontMedium,
                       color: AppColors.textSecondary,
                     ),

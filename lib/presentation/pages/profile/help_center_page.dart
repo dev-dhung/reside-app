@@ -114,7 +114,7 @@ class HelpCenterPage extends StatelessWidget {
                       Icon(Icons.support_agent_rounded,
                           size: 40, color: AppColors.textTertiary),
                       const SizedBox(height: 8),
-                      const Text(
+                      Text(
                         '¿No encontraste tu respuesta?',
                         style: TextStyle(
                           fontSize: AppDimensions.fontMedium,
@@ -123,7 +123,7 @@ class HelpCenterPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 4),
-                      const Text(
+                      Text(
                         'Nuestro equipo está listo para ayudarte',
                         style: TextStyle(
                           fontSize: AppDimensions.fontBody,
@@ -204,7 +204,7 @@ class _FaqCard extends StatelessWidget {
             collapsedIconColor: AppColors.textTertiary,
             title: Text(
               faq.question,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontBody,
                 fontWeight: FontWeight.w600,
                 color: AppColors.textPrimary,
@@ -220,7 +220,7 @@ class _FaqCard extends StatelessWidget {
                 ),
                 child: Text(
                   faq.answer,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: AppDimensions.fontBody,
                     height: 1.5,
                     color: AppColors.textSecondary,

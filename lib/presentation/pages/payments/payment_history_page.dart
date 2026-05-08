@@ -512,17 +512,17 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
         child: TextField(
           controller: _searchController,
           onChanged: (val) => setState(() => _searchQuery = val),
-          style: const TextStyle(
+          style: TextStyle(
             fontSize: AppDimensions.fontBody,
             color: AppColors.textPrimary,
           ),
           decoration: InputDecoration(
             hintText: '${l10n.searchByApartment}  (${l10n.searchHintApt})',
-            hintStyle: const TextStyle(
+            hintStyle: TextStyle(
               fontSize: AppDimensions.fontSmall,
               color: AppColors.textTertiary,
             ),
-            prefixIcon: const Padding(
+            prefixIcon: Padding(
               padding: EdgeInsets.only(left: 16, right: 8),
               child: Icon(
                 Icons.search_rounded,
@@ -536,7 +536,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
             ),
             suffixIcon: _searchQuery.isNotEmpty
                 ? IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.close_rounded,
                       size: 18,
                       color: AppColors.textTertiary,
@@ -659,7 +659,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
                 color: AppColors.primarySurface,
                 borderRadius: BorderRadius.circular(AppDimensions.radiusXXL),
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.receipt_long_outlined,
                 size: AppDimensions.iconHero,
                 color: AppColors.textTertiary,
@@ -668,7 +668,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
             const SizedBox(height: AppDimensions.paddingMedium),
             Text(
               l10n.noPaymentsMatch,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontMedium,
                 fontWeight: FontWeight.w500,
                 color: AppColors.textSecondary,
@@ -728,7 +728,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
                   children: [
                     Text(
                       payment.description ?? l10n.defaultPaymentDesc,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontBody,
                         fontWeight: FontWeight.w600,
                         color: AppColors.textPrimary,
@@ -742,7 +742,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
                       children: [
                         Text(
                           _formatDate(payment.date),
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: AppDimensions.fontSmall,
                             color: AppColors.textTertiary,
                           ),
@@ -752,7 +752,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
                           Container(
                             width: 3,
                             height: 3,
-                            decoration: const BoxDecoration(
+                            decoration: BoxDecoration(
                               color: AppColors.textTertiary,
                               shape: BoxShape.circle,
                             ),
@@ -762,7 +762,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
                             l10n.aptLabel(
                               userApartmentMap[payment.userId] ?? 'N/A',
                             ),
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: AppDimensions.fontSmall,
                               fontWeight: FontWeight.w500,
                               color: AppColors.textSecondary,
@@ -781,7 +781,7 @@ class _PaymentHistoryPageState extends State<PaymentHistoryPage>
                 children: [
                   Text(
                     '\$${payment.amount.toStringAsFixed(2)}',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontMedium,
                       fontWeight: FontWeight.w800,
                       color: AppColors.textPrimary,

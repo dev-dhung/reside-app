@@ -29,7 +29,7 @@ class ProfileInfoTile extends StatelessWidget {
               Container(
                 width: 36,
                 height: 36,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppColors.primarySurface,
                   shape: BoxShape.circle,
                 ),
@@ -46,7 +46,7 @@ class ProfileInfoTile extends StatelessWidget {
                   children: [
                     Text(
                       label.toUpperCase(),
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: AppDimensions.fontSmall,
                         color: AppColors.textTertiary,
                         letterSpacing: 0.5,
@@ -68,7 +68,7 @@ class ProfileInfoTile extends StatelessWidget {
             ],
           ),
         ),
-        const Divider(
+        Divider(
           color: AppColors.divider,
           height: 1,
         ),

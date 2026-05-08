@@ -51,11 +51,11 @@ class ChatBubble extends StatelessWidget {
               color: bgColor,
               borderRadius: borderRadius,
               boxShadow: isBot
-                  ? const [
+                  ? [
                       BoxShadow(
                         color: AppColors.shadow,
                         blurRadius: 20,
-                        offset: Offset(0, 4),
+                        offset: const Offset(0, 4),
                       ),
                     ]
                   : null,
@@ -83,7 +83,7 @@ class ChatBubble extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 4),
             child: Text(
               time,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: AppDimensions.fontXS,
                 color: AppColors.textTertiary,
               ),

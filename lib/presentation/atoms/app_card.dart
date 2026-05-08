@@ -27,11 +27,11 @@ class AppCard extends StatelessWidget {
       borderRadius:
           borderRadius ?? BorderRadius.circular(AppDimensions.radiusXL),
       border: showBorder ? Border.all(color: AppColors.divider) : null,
-      boxShadow: const [
+      boxShadow: [
         BoxShadow(
           color: AppColors.shadow,
           blurRadius: 20,
-          offset: Offset(0, 4),
+          offset: const Offset(0, 4),
         ),
       ],
     );

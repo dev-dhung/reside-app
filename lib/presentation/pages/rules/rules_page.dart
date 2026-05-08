@@ -190,7 +190,7 @@ class _RulesPageState extends State<RulesPage> {
                               bottom: AppDimensions.paddingXS),
                           child: Text(
                             rule.detail,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: AppDimensions.fontBody,
                               color: AppColors.textSecondary,
                               height: 1.5,

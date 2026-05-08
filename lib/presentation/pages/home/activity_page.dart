@@ -92,7 +92,7 @@ class ActivityPage extends StatelessWidget {
                           children: [
                             Text(
                               a.title,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w600,
                                 color: AppColors.textPrimary,
@@ -101,7 +101,7 @@ class ActivityPage extends StatelessWidget {
                             const SizedBox(height: 2),
                             Text(
                               a.subtitle,
-                              style: const TextStyle(
+                              style: TextStyle(
                                 fontSize: 12,
                                 color: AppColors.textTertiary,
                               ),
@@ -111,7 +111,7 @@ class ActivityPage extends StatelessWidget {
                       ),
                       Text(
                         a.time,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 11,
                           color: AppColors.textTertiary,
                         ),

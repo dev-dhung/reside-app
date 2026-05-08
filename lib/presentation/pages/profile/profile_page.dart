@@ -5,6 +5,7 @@ import 'package:prototype/core/constants/app_dimensions.dart';
 import 'package:prototype/core/routes/app_routes.dart';
 import 'package:prototype/l10n/app_localizations.dart';
 import 'package:prototype/presentation/atoms/wave_header.dart';
+import 'package:prototype/presentation/pages/main_shell.dart';
 import 'package:prototype/presentation/pages/profile/rate_app_dialog.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -16,6 +17,8 @@ class ProfilePage extends StatelessWidget {
 
     showModalBottomSheet(
       context: context,
+      isDismissible: true,
+      enableDrag: true,
       backgroundColor: Theme.of(context).cardColor,
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
@@ -87,46 +90,70 @@ class ProfilePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: WaveHeader(
-              height: size.height * 0.28,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                height: size.height * 0.28,
+                child: Stack(
                   children: [
-                    Container(
-                      width: 70,
-                      height: 70,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        border: Border.all(color: Colors.white, width: 3),
-                        color: Colors.white.withValues(alpha: 0.2),
-                      ),
-                      child: const Icon(
-                        Icons.person,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      l10n.ownerInfo('4-B'),
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white,
+                    Positioned(
+                      top: AppDimensions.paddingXL,
+                      left: AppDimensions.paddingMedium,
+                      child: GestureDetector(
+                        onTap: () => MainShell.goToTab(context, 0),
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: Colors.white.withValues(alpha: 0.18),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            Icons.arrow_back_rounded,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 4),
-                    Text(
-                      'vecino_4b@email.com',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Colors.white.withValues(alpha: 0.8),
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 70,
+                            height: 70,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(color: Colors.white, width: 3),
+                              color: Colors.white.withValues(alpha: 0.2),
+                            ),
+                            child: const Icon(
+                              Icons.person,
+                              size: 40,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            l10n.ownerInfo('4-B'),
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            'vecino_4b@email.com',
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.white.withValues(alpha: 0.8),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
               ),
-            ),
             ),
 
             Padding(

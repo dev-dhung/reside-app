@@ -1,9 +1,9 @@
 {
   "@@locale": "es",
 
-  "appName": "Reside",
+  "appName": "SIGRA",
   "appSubtitle": "Tu comunidad, conectada",
-  "appTitle": "Reside",
+  "appTitle": "SIGRA",
 
   "emailOrPhoneLabel": "Correo electrónico o teléfono",
   "passwordLabel": "Contraseña",
@@ -30,8 +30,8 @@
   "registerDescription": "Complete sus datos para registrarse",
   "welcomeMessage": "Bienvenido",
 
-  "homeAdminTitle": "Reside - Gestión Admin",
-  "homeResidentTitle": "Reside - Mi tablero",
+  "homeAdminTitle": "SIGRA - Gestión Admin",
+  "homeResidentTitle": "SIGRA - Mi tablero",
   "adminSectionTitle": "Panel de Control Administrativo",
   "residentSectionTitle": "Servicios y Gestión",
   "modeResident": "Modo Vecino",
@@ -49,7 +49,7 @@
   "menuEmergency": "Emergencias",
 
   "adminRecaudation": "Recaudación Total Mensual",
-  "adminCajaLabel": "Fondo de la Residencia",
+  "adminCajaLabel": "Fondo de la SIGRAncia",
   "residentAccountStatus": "Estado de Cuenta",
   "residentPendingLabel": "Pendiente - Enero 2026",
 
@@ -145,8 +145,8 @@
   "changePassword": "Cambiar Contraseña",
   "logoutButton": "CERRAR SESIÓN",
 
-  "chatbotTitle": "Asistente Virtual Reside",
-  "chatbotGreeting": "¡Hola! Soy Reside-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?",
+  "chatbotTitle": "Asistente Virtual SIGRA",
+  "chatbotGreeting": "¡Hola! Soy SIGRA-Bot, tu asistente virtual. ¿En qué puedo ayudarte hoy?",
   "chatbotPaymentMethods": "Aceptamos: \n• Transferencia (Banesco)\n• Pago Móvil\n• Zelle\n• Efectivo en oficina.\n\nAl pagar, recuerda subir tu comprobante en el módulo 'Pagar' del menú principal.",
   "chatbotGenericFollowup": "Entendido. ¿Hay alguna otra consulta en la que pueda ayudarte?",
   "chatbotReservationGuide": "¡Perfecto! Para reservar:\n1. Ve al menú 'Reservas'.\n2. Selecciona el área (Piscina, Parrillera, etc.).\n3. Elige la fecha.\n\nNota: Algunas áreas requieren un depósito de garantía de $20. ¿Deseas ver las normas de uso de áreas?",
@@ -157,7 +157,7 @@
   "chatbotTechnicalStatus": "Hay un reporte activo sobre la bomba de agua. El personal técnico ya está trabajando en el sitio. Estiman restablecer el servicio a las 4:00 PM.",
   "chatbotReservationAvailable": "El módulo de reservas está habilitado para la Parrillera y el Salón de Fiestas. ¿Deseas que te explique el paso a paso para reservar?",
   "chatbotRulesQuery": "El reglamento prohibe ruidos molestos después de las 8:00 PM. Las mascotas deben usar correa siempre. ¿Quieres consultar algún artículo específico?",
-  "chatbotIntro": "¡Hola! Soy Reside-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?",
+  "chatbotIntro": "¡Hola! Soy SIGRA-Bot. Estoy listo para ayudarte con la gestión de tu apartamento. ¿Qué necesitas?",
   "chatbotCourtesy": "¡Siempre a la orden! ¿Algo más?",
   "chatbotCapabilities": "Puedo informarte sobre tus pagos, registrar fallas técnicas, ayudarte con reservas o leerte las normas del edificio.",
   "chatbotError": "No logré procesar esa solicitud. Intenta preguntarme por 'pagos', 'fallas técnicas' o 'reservas'.",
@@ -409,7 +409,7 @@
   },
   "available24h": "24h",
 
-  "reportsAdminTitle": "Panel de Reportes Reside",
+  "reportsAdminTitle": "Panel de Reportes SIGRA",
   "reportsResidentTitle": "Mis Estadísticas",
   "reportsAdminHeading": "Resumen de Gestión",
   "reportsResidentHeading": "Tu Actividad en el Condominio",

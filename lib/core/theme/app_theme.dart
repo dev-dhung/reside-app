@@ -22,13 +22,28 @@ class AppTheme {
   // ---------------------------------------------------------------------------
   // Light theme
   // ---------------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
+  // Shared page transitions — Cupertino-style horizontal slide on every platform
+  // ---------------------------------------------------------------------------
+  static const PageTransitionsTheme _pageTransitions = PageTransitionsTheme(
+    builders: {
+      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.windows: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.linux: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.macOS: CupertinoPageTransitionsBuilder(),
+      TargetPlatform.fuchsia: CupertinoPageTransitionsBuilder(),
+    },
+  );
+
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: AppColors.scaffoldBackground,
-      colorScheme: const ColorScheme.light(
+      pageTransitionsTheme: _pageTransitions,
+      colorScheme: ColorScheme.light(
         primary: AppColors.primary,
         primaryContainer: AppColors.primarySurface,
         secondary: AppColors.accent,
@@ -41,7 +56,7 @@ class AppTheme {
         onError: AppColors.textOnPrimary,
       ),
       fontFamily: 'Roboto',
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: Colors.transparent,
         foregroundColor: AppColors.textPrimary,
         elevation: 0,
@@ -121,12 +136,12 @@ class AppTheme {
           borderRadius: BorderRadius.circular(AppDimensions.radiusLarge),
           borderSide: const BorderSide(color: AppColors.error, width: 1),
         ),
-        labelStyle: const TextStyle(
+        labelStyle: TextStyle(
           color: AppColors.textSecondary,
           fontSize: AppDimensions.fontBody,
           fontWeight: FontWeight.w400,
         ),
-        hintStyle: const TextStyle(
+        hintStyle: TextStyle(
           color: AppColors.textTertiary,
           fontSize: AppDimensions.fontBody,
         ),
@@ -143,7 +158,7 @@ class AppTheme {
         ),
         margin: EdgeInsets.zero,
       ),
-      dividerTheme: const DividerThemeData(
+      dividerTheme: DividerThemeData(
         color: AppColors.divider,
         thickness: 1,
         space: 1,
@@ -156,7 +171,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
         ),
       ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppColors.navBackground,
         selectedItemColor: AppColors.navActive,
         unselectedItemColor: AppColors.navInactive,
@@ -189,7 +204,7 @@ class AppTheme {
       ),
       snackBarTheme: SnackBarThemeData(
         backgroundColor: AppColors.textPrimary,
-        contentTextStyle: const TextStyle(
+        contentTextStyle: TextStyle(
           color: AppColors.surface,
           fontSize: AppDimensions.fontBody,
         ),
@@ -202,7 +217,7 @@ class AppTheme {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimensions.radiusXXL),
         ),
-        titleTextStyle: const TextStyle(
+        titleTextStyle: TextStyle(
           color: AppColors.textPrimary,
           fontSize: AppDimensions.fontLarge,
           fontWeight: FontWeight.w600,
@@ -220,6 +235,7 @@ class AppTheme {
       brightness: Brightness.dark,
       primaryColor: AppColors.primary,
       scaffoldBackgroundColor: _darkBackground,
+      pageTransitionsTheme: _pageTransitions,
       colorScheme: const ColorScheme.dark(
         primary: AppColors.primary,
         primaryContainer: Color(0xFF1B4332),

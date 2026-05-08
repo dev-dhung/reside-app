@@ -28,11 +28,11 @@ class GradientContainer extends StatelessWidget {
         ),
         borderRadius:
             borderRadius ?? BorderRadius.circular(AppDimensions.radiusXL),
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
             color: AppColors.shadow,
             blurRadius: 20,
-            offset: Offset(0, 4),
+            offset: const Offset(0, 4),
           ),
         ],
       ),

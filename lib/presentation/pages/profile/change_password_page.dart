@@ -74,6 +74,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
     showDialog(
       context: context,
+      barrierDismissible: true,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppDimensions.radiusXL),
@@ -95,7 +96,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Contraseña actualizada',
               style: TextStyle(
                 fontSize: AppDimensions.fontLarge,
@@ -104,7 +105,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Tu contraseña ha sido cambiada exitosamente.',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -353,7 +354,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   Widget _buildLabel(String text) {
     return Text(
       text,
-      style: const TextStyle(
+      style: TextStyle(
         fontSize: AppDimensions.fontBody,
         fontWeight: FontWeight.w600,
         color: AppColors.textPrimary,
@@ -370,7 +371,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   }) {
     return InputDecoration(
       hintText: hint,
-      hintStyle: const TextStyle(color: AppColors.textTertiary),
+      hintStyle: TextStyle(color: AppColors.textTertiary),
       prefixIcon: Icon(icon, color: AppColors.textTertiary, size: 20),
       suffixIcon: isPassword
           ? IconButton(

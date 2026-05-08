@@ -602,7 +602,7 @@ class _ReservationsPageState extends State<ReservationsPage>
                           area.status == AreaStatus.maintenance
                               ? l10n.statusMaintenance
                               : l10n.statusOccupied,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: AppDimensions.fontBody,
                             fontWeight: FontWeight.w600,
                             color: AppColors.textTertiary,
@@ -640,7 +640,7 @@ class _ReservationsPageState extends State<ReservationsPage>
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: const ColorScheme.light(
+            colorScheme: ColorScheme.light(
               primary: AppColors.primary,
               onPrimary: AppColors.textOnPrimary,
               surface: AppColors.cardBackground,
@@ -717,7 +717,7 @@ class _ReservationsPageState extends State<ReservationsPage>
                   // Title
                   Text(
                     l10n.reservationSentTitle,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontXL,
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary,
@@ -785,7 +785,7 @@ class _ReservationsPageState extends State<ReservationsPage>
                   Text(
                     l10n.reservationSentMessage(area.name, dateStr),
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppDimensions.fontBody,
                       color: AppColors.textSecondary,
                       height: 1.5,
